@@ -1,0 +1,74 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Main container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+    background-color: #fff;
+    padding: 20px 0;
+}
+
+/* Header layout */
+.site-header .container {
+    display: flex;
+    justify-content: space-between; /* DIUBAH: Ini kuncinya */
+    align-items: center;
+}
+
+/* Logo */
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #222;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+
+.logo img {
+    height: 90px;
+}
+
+/* Navigation */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 35px; /* Spasi antar menu */
+}
+
+.main-nav ul li a {
+    color: #444;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 5px 0;
+    transition: color 0.3s ease; /* DIRAPIKAN: Cukup 1 baris */
+
+    /* margin-right & margin DIHAPUS, karena sudah diatur 'li' */
+}
+
+/* Hover state */
+.main-nav ul li a:hover {
+    color: #000;
+}
