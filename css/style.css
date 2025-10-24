@@ -1,74 +1,57 @@
 /* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Body styles */
+/* Body */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #fff;
-    color: #333;
-}
-
-/* Main container */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  color: #333;
 }
 
 /* Header */
 .site-header {
-    background-color: #fff;
-    padding: 20px 0;
+  background-color: transparent;
+  padding: 40px 0;
 }
 
-/* Header layout */
-.site-header .container {
-    display: flex;
-    justify-content: space-between; /* DIUBAH: Ini kuncinya */
-    align-items: center;
+/* Container layout */
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* untuk menaruh navbar di tengah */
+  align-items: center;
+  position: relative;
 }
 
-/* Logo */
-.logo a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #222;
-    font-weight: 700;
-    font-size: 18px;
+/* Logo kiri */
+.logo {
+  position: absolute;
+  left: 80px;
 }
-
 
 .logo img {
-    height: 90px;
+  height: 90px;
+  width: auto;
 }
 
-/* Navigation */
+/* Navbar tengah */
 .main-nav ul {
-    list-style: none;
-    display: flex;
+  display: flex;
+  gap: 150px;
+  list-style: none;
 }
 
-.main-nav ul li {
-    margin-left: 35px; /* Spasi antar menu */
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.main-nav ul li a {
-    color: #444;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 900;
-    padding: 5px 0;
-    transition: color 0.3s ease; /* DIRAPIKAN: Cukup 1 baris */
-
-    /* margin-right & margin DIHAPUS, karena sudah diatur 'li' */
-}
-
-/* Hover state */
-.main-nav ul li a:hover {
-    color: #000;
+.main-nav a:hover {
+  color: #007BFF;
 }
