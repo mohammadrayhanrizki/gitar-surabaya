@@ -1,36 +1,40 @@
-/* Simple comment: basic styles for the Gitar Surabaya site */
-
-/* Reset */
+/* =========================
+  Reset
+  ========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body */
+/* =========================
+  Base
+  ========================= */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
   color: #333;
 }
 
-/* Header */
+/* =========================
+  Header
+  ========================= */
 .site-header {
   background-color: transparent;
   padding: 40px 0;
+  z-index: 1;
 }
 
-/* Container layout */
+/* Header container - pusatkan konten header */
 .container {
   width: 100%;
   display: flex;
   justify-content: center;
-  /* untuk menaruh navbar di tengah */
   align-items: center;
   position: relative;
 }
 
-/* Logo kiri */
+/* Logo (kiri) */
 .logo {
   position: absolute;
   left: 80px;
@@ -41,7 +45,7 @@ body {
   width: auto;
 }
 
-/* Navbar tengah */
+/* Navbar (tengah) */
 .main-nav ul {
   display: flex;
   gap: 150px;
@@ -59,30 +63,38 @@ body {
   color: red;
 }
 
-/* HERO SECTION */
+/* =========================
+  Hero Section
+  ========================= */
 .hero-content {
+  position: relative;
   width: 100%;
   min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
+  overflow: visible;
+  z-index: 2;
 }
 
-/* Container Layout */
+/* Container dalam hero - batasi lebar konten */
 .container-section {
   width: 85%;
   max-width: 1200px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 0 auto;
-  gap: 50px;
+  position: relative;
+  z-index: 3; /* teks di atas background hero */
 }
 
-/* Kiri: teks */
+/* Teks hero (kiri) */
 .hero-content .text {
   flex: 1;
+  padding-left: 50px;
+  margin-bottom: 270px;
 }
 
 .hero-content h5 {
@@ -109,21 +121,25 @@ body {
   margin-bottom: 35px;
 }
 
-/* Tombol */
+/* Tombol pada hero */
 .hero-buttons {
   display: flex;
   gap: 15px;
 }
 
-.btn-primary {
-  background-color: #000;
-  color: #fff;
+.btn-primary,
+.btn-outline {
   text-decoration: none;
   font-weight: 600;
   padding: 12px 32px;
   border-radius: 4px;
   border: 2px solid #000;
   transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #000;
+  color: #fff;
 }
 
 .btn-primary:hover {
@@ -134,12 +150,6 @@ body {
 .btn-outline {
   background-color: transparent;
   color: #000;
-  border: 2px solid #000;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 12px 32px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
@@ -147,23 +157,21 @@ body {
   color: #fff;
 }
 
-/* Kanan: gambar gitar */
-.hero-image {
-  flex: 1;
+/* Background gambar hero (kanan) */
+.hero-bg {
+  position: absolute;
+  right: -40px;   /* geser sedikit keluar supaya tidak nempel tepi */
+  top: -60px;     /* angkat supaya bagian atas gambar tidak terpotong */
+  z-index: 2;     /* di bawah teks (z-index:3) */
+  pointer-events: none;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
 }
 
-.hero-image img {
-  width: 460px;
+.hero-bg img {
+  width: 850px;    /* ukuran gambar gitar */
   height: auto;
-  filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.2));
   transform: rotate(-5deg);
-}
-
-/* Tambahan biar teks gak mepet */
-.hero-content .text {
-  padding-left: 50px;
-  margin-bottom: 270px;
+  filter: drop-shadow(10px 10px 30px rgba(0,0,0,0.25));
 }
