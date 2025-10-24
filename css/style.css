@@ -1,3 +1,5 @@
+/* Simple comment: basic styles for the Gitar Surabaya site */
+
 /* Reset */
 * {
   margin: 0;
@@ -22,7 +24,8 @@ body {
 .container {
   width: 100%;
   display: flex;
-  justify-content: center; /* untuk menaruh navbar di tengah */
+  justify-content: center;
+  /* untuk menaruh navbar di tengah */
   align-items: center;
   position: relative;
 }
@@ -53,5 +56,114 @@ body {
 }
 
 .main-nav a:hover {
-  color: #007BFF;
+  color: red;
+}
+
+/* HERO SECTION */
+.hero-content {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+/* Container Layout */
+.container-section {
+  width: 85%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  gap: 50px;
+}
+
+/* Kiri: teks */
+.hero-content .text {
+  flex: 1;
+}
+
+.hero-content h5 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 12px;
+  letter-spacing: 1.5px;
+}
+
+.hero-content h1 {
+  font-size: 52px;
+  font-weight: 800;
+  color: #000;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 35px;
+}
+
+/* Tombol */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-primary {
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 4px;
+  border: 2px solid #000;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: #000;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #000;
+  border: 2px solid #000;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Kanan: gambar gitar */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-image img {
+  width: 460px;
+  height: auto;
+  filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.2));
+  transform: rotate(-5deg);
+}
+
+/* Tambahan biar teks gak mepet */
+.hero-content .text {
+  padding-left: 50px;
+  margin-bottom: 270px;
 }
