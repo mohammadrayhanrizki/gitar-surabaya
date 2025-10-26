@@ -88,7 +88,8 @@ body {
   justify-content: flex-start;
   margin: 0 auto;
   position: relative;
-  z-index: 3; /* teks di atas background hero */
+  z-index: 3;
+  /* teks di atas background hero */
 }
 
 /* Teks hero (kiri) */
@@ -99,15 +100,16 @@ body {
 }
 
 .hero-content h5 {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 25px;
+  font-weight: 580;
   color: #000;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   letter-spacing: 1.5px;
+  margin-left: 15px;
 }
 
 .hero-content h1 {
-  font-size: 52px;
+  font-size: 60px;
   font-weight: 800;
   color: #000;
   line-height: 1.2;
@@ -115,11 +117,12 @@ body {
 }
 
 .hero-content p {
-  font-size: 14px;
+  font-size: 16px;
   color: #555;
   line-height: 1.7;
   max-width: 480px;
   margin-bottom: 35px;
+  font-weight: 570;
 }
 
 /* Tombol pada hero */
@@ -146,7 +149,7 @@ body {
 .btn-primary:hover {
   background-color: transparent;
   color: red;
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .btn-outline {
@@ -162,22 +165,64 @@ body {
 /* Background gambar hero (kanan) */
 .hero-bg {
   position: absolute;
-  right: 50px;   /* geser sedikit keluar supaya tidak nempel tepi */
-  top: -120px;     /* angkat supaya bagian atas gambar tidak terpotong */
-  z-index: 2;     /* di bawah teks (z-index:3) */
+  right: 50px;
+  /* geser sedikit keluar supaya tidak nempel tepi */
+  top: -120px;
+  /* angkat supaya bagian atas gambar tidak terpotong */
+  z-index: 2;
+  /* di bawah teks (z-index:3) */
   pointer-events: none;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  flex-direction: column;
 }
 
 .hero-bg img {
   width: 850px;
-  /*ukurangambargitar*/height: auto;
+  /*ukurangambargitar*/
+  height: auto;
   transform: rotate(5deg);
-  filter: drop-shadow(10px 10px 30px rgba(0,0,0,0.25));
+  filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
   -webkit-transform: rotate(5deg);
   -moz-transform: rotate(5deg);
   -ms-transform: rotate(5deg);
   -o-transform: rotate(5deg);
+}
+
+/* gitar utama */
+
+guitar-img {
+  width: 850px;
+  height: auto;
+  transform: rotate(5deg);
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
+  filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
+  -webkit-filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
+}
+
+/* shadow gitar */
+
+.guitar-shadow {
+  width: 700px;
+  height: auto;
+  position: absolute;
+  bottom: -60px;
+  right: 70px;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.shadow-bg {
+  position: absolute;
+  bottom: 0;
+  right: -50px;
+  width: 1000px;
+  height: auto;
+  rotate: -5deg;
+  z-index: 0;
+  opacity: 0.9;
 }

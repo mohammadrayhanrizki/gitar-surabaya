@@ -45,7 +45,9 @@
 
         <!-- HERO BACKGROUND IMAGE -->
         <div class="hero-bg">
-            <img src="./images/foto.png" alt="foto-gitar">
+            <img src="./images/foto.png" alt="foto-gitar" class="guitar-img">
+            <img src="./images/shadowbawahgitar.png" alt="bayangan-gitar" class="guitar-shadow">
+            <img src="./images/shadowbg.png" alt="shadow-bg" class="shadow-bg">
         </div>
     </section>
 </body>
