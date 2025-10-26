@@ -1,31 +1,25 @@
-/* =========================
-  Reset
-  ========================= */
+/* Reset default styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* =========================
-  Base
-  ========================= */
+/* Basic body styles */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
   color: #333;
 }
 
-/* =========================
-  Header
-  ========================= */
+/* Header styling */
 .site-header {
   background-color: transparent;
   padding: 40px 0;
   z-index: 1;
 }
 
-/* Header container - pusatkan konten header */
+/* Center header content */
 .container {
   width: 100%;
   display: flex;
@@ -34,24 +28,26 @@ body {
   position: relative;
 }
 
-/* Logo (kiri) */
+/* Logo positioning */
 .logo {
   position: absolute;
   left: 80px;
 }
 
+/* Logo image size */
 .logo img {
   height: 90px;
   width: auto;
 }
 
-/* Navbar (tengah) */
+/* Navigation menu layout */
 .main-nav ul {
   display: flex;
   gap: 150px;
   list-style: none;
 }
 
+/* Navigation links style */
 .main-nav a {
   text-decoration: none;
   color: #333;
@@ -60,13 +56,12 @@ body {
   font-weight: 510;
 }
 
+/* Navigation hover effect */
 .main-nav a:hover {
   color: red;
 }
 
-/* =========================
-  Hero Section
-  ========================= */
+/* Hero section layout */
 .hero-content {
   position: relative;
   width: 100%;
@@ -79,7 +74,7 @@ body {
   z-index: 2;
 }
 
-/* Container dalam hero - batasi lebar konten */
+/* Content width limiter */
 .container-section {
   width: 85%;
   max-width: 1200px;
@@ -89,16 +84,16 @@ body {
   margin: 0 auto;
   position: relative;
   z-index: 3;
-  /* teks di atas background hero */
 }
 
-/* Teks hero (kiri) */
+/* Hero text content */
 .hero-content .text {
   flex: 1;
   padding-left: 50px;
   margin-bottom: 270px;
 }
 
+/* Subtitle styling */
 .hero-content h5 {
   font-size: 25px;
   font-weight: 580;
@@ -108,6 +103,7 @@ body {
   margin-left: 15px;
 }
 
+/* Main title styling */
 .hero-content h1 {
   font-size: 60px;
   font-weight: 800;
@@ -116,6 +112,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* Paragraph styling */
 .hero-content p {
   font-size: 16px;
   color: #555;
@@ -125,12 +122,13 @@ body {
   font-weight: 570;
 }
 
-/* Tombol pada hero */
+/* Button container */
 .hero-buttons {
   display: flex;
   gap: 15px;
 }
 
+/* Common button styles */
 .btn-primary,
 .btn-outline {
   text-decoration: none;
@@ -141,36 +139,37 @@ body {
   transition: all 0.3s ease;
 }
 
+/* Primary button */
 .btn-primary {
   background-color: #000;
   color: #fff;
 }
 
+/* Primary button hover */
 .btn-primary:hover {
   background-color: transparent;
   color: red;
   border: 2px solid red;
 }
 
+/* Outline button */
 .btn-outline {
   background-color: transparent;
   color: #000;
 }
 
+/* Outline button hover */
 .btn-outline:hover {
   color: red;
   border: 2px solid red;
 }
 
-/* Background gambar hero (kanan) */
+/* Hero background image */
 .hero-bg {
   position: absolute;
   right: 50px;
-  /* geser sedikit keluar supaya tidak nempel tepi */
   top: -120px;
-  /* angkat supaya bagian atas gambar tidak terpotong */
   z-index: 2;
-  /* di bawah teks (z-index:3) */
   pointer-events: none;
   display: flex;
   justify-content: flex-end;
@@ -178,9 +177,9 @@ body {
   flex-direction: column;
 }
 
+/* Hero image styling */
 .hero-bg img {
   width: 850px;
-  /*ukurangambargitar*/
   height: auto;
   transform: rotate(5deg);
   filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
@@ -190,8 +189,7 @@ body {
   -o-transform: rotate(5deg);
 }
 
-/* gitar utama */
-
+/* Guitar image styling */
 guitar-img {
   width: 850px;
   height: auto;
@@ -204,8 +202,7 @@ guitar-img {
   -webkit-filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
 }
 
-/* shadow gitar */
-
+/* Guitar shadow effect */
 .guitar-shadow {
   width: 700px;
   height: auto;
@@ -216,6 +213,7 @@ guitar-img {
   opacity: 0.7;
 }
 
+/* Background shadow */
 .shadow-bg {
   position: absolute;
   bottom: 0;
