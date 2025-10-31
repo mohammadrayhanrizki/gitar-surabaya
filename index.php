@@ -21,9 +21,9 @@
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#tentang">Tentang Kami</a></li>
-                    <li><a href="#layanan">Layanan</a></li>
-                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="index.php">Tentang Kami</a></li>
+                    <li><a href="layanan.php">Layanan</a></li>
+                    <li><a href="galeri.php">Galeri</a></li>
                 </ul>
             </nav>
         </div>
