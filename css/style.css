@@ -1,25 +1,22 @@
-/* Reset default styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Basic body styles */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
   color: #333;
 }
 
-/* Header styling */
+/* HEADER */
 .site-header {
   background-color: transparent;
   padding: 40px 0;
   z-index: 1;
 }
 
-/* Center header content */
 .container {
   width: 100%;
   display: flex;
@@ -28,40 +25,34 @@ body {
   position: relative;
 }
 
-/* Logo positioning */
 .logo {
   position: absolute;
   left: 80px;
 }
 
-/* Logo image size */
 .logo img {
   height: 90px;
   width: auto;
 }
 
-/* Navigation menu layout */
 .main-nav ul {
   display: flex;
   gap: 150px;
   list-style: none;
 }
 
-/* Navigation links style */
 .main-nav a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
   transition: color 0.3s ease;
-  font-weight: 510;
 }
 
-/* Navigation hover effect */
 .main-nav a:hover {
   color: red;
 }
 
-/* Hero section layout */
+/* HERO SECTION */
 .hero-content {
   position: relative;
   width: 100%;
@@ -74,7 +65,6 @@ body {
   z-index: 2;
 }
 
-/* Content width limiter */
 .container-section {
   width: 85%;
   max-width: 1200px;
@@ -86,24 +76,20 @@ body {
   z-index: 3;
 }
 
-/* Hero text content */
 .hero-content .text {
   flex: 1;
   padding-left: 50px;
   margin-bottom: 270px;
 }
 
-/* Subtitle styling */
 .hero-content h5 {
   font-size: 25px;
   font-weight: 580;
   color: #000;
   margin-bottom: 10px;
   letter-spacing: 1.5px;
-  margin-left: 15px;
 }
 
-/* Main title styling */
 .hero-content h1 {
   font-size: 60px;
   font-weight: 800;
@@ -112,7 +98,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Paragraph styling */
 .hero-content p {
   font-size: 16px;
   color: #555;
@@ -122,13 +107,11 @@ body {
   font-weight: 570;
 }
 
-/* Button container */
 .hero-buttons {
   display: flex;
   gap: 15px;
 }
 
-/* Common button styles */
 .btn-primary,
 .btn-outline {
   text-decoration: none;
@@ -139,81 +122,52 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Primary button */
 .btn-primary {
   background-color: #000;
   color: #fff;
 }
 
-/* Primary button hover */
 .btn-primary:hover {
   background-color: transparent;
   color: red;
   border: 2px solid red;
 }
 
-/* Outline button */
 .btn-outline {
   background-color: transparent;
   color: #000;
 }
 
-/* Outline button hover */
 .btn-outline:hover {
   color: red;
   border: 2px solid red;
 }
 
-/* Hero background image */
+/* HERO IMAGES */
 .hero-bg {
   position: absolute;
   right: 50px;
   top: -120px;
   z-index: 2;
   pointer-events: none;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-direction: column;
 }
 
-/* Hero image styling */
-.hero-bg img {
+.guitar-img {
   width: 850px;
   height: auto;
   transform: rotate(5deg);
   filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
-  -webkit-transform: rotate(5deg);
-  -moz-transform: rotate(5deg);
-  -ms-transform: rotate(5deg);
-  -o-transform: rotate(5deg);
 }
 
-/* Guitar image styling */
-guitar-img {
-  width: 850px;
-  height: auto;
-  transform: rotate(5deg);
-  -webkit-transform: rotate(5deg);
-  -moz-transform: rotate(5deg);
-  -ms-transform: rotate(5deg);
-  -o-transform: rotate(5deg);
-  filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
-  -webkit-filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
-}
-
-/* Guitar shadow effect */
 .guitar-shadow {
   width: 700px;
   height: auto;
   position: absolute;
   bottom: -60px;
   right: 70px;
-  z-index: -1;
   opacity: 0.7;
 }
 
-/* Background shadow */
 .shadow-bg {
   position: absolute;
   bottom: 0;
@@ -221,12 +175,10 @@ guitar-img {
   width: 1000px;
   height: auto;
   rotate: -5deg;
-  z-index: 0;
   opacity: 0.9;
 }
 
-
-/* ===== TENTANG KAMI SECTION ===== */
+/* TENTANG KAMI */
 .tentang-kami {
   background-color: #fff;
   padding: 100px 0;
@@ -241,30 +193,19 @@ guitar-img {
   margin-bottom: 60px;
 }
 
-/* Container utama */
 .container-tentang {
-  width: 100%;
-  max-width: none;
-  margin: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 80px;
   padding-left: 200px;
-  /* biar bener-bener nempel kiri */
 }
 
-/* Logo bagian kiri */
 .logo-tentang img {
   width: 500px;
   height: auto;
-  display: block;
-  object-fit: contain;
-  margin-left: 0;
-  /* pastikan ga ada jarak kiri */
 }
 
-/* Teks bagian kanan */
 .text-tentang {
   flex: 1;
 }
@@ -277,4 +218,92 @@ guitar-img {
   color: #333;
   margin-bottom: 25px;
   max-width: 700px;
+}
+
+/* FOOTER */
+/* CSS */
+.footer {
+  background-color: #fff;
+  padding: 80px 0;
+  margin-top: 20rem;
+}
+
+.container-footer {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.footer-logo img {
+  width: 160px;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+}
+
+.footer-divider {
+  width: 2px;
+  background-color: #000;
+  height: 180px;
+}
+
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.social-item img {
+  width: 22px;
+  height: 22px;
+}
+
+.social-item p {
+  font-size: 15px;
+  color: #000;
+  margin: 0;
+}
+
+.footer-maps {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.maps-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.maps-title img {
+  width: 20px;
+  height: 20px;
+}
+
+.maps-title p {
+  font-weight: 600;
+  color: #000;
+  font-size: 15px;
+  margin: 0;
+}
+
+.footer-maps p {
+  font-size: 14px;
+  color: #000;
+  line-height: 1.6;
+  margin: 0;
 }

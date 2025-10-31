@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <!-- HEADER -->
     <header class="site-header">
         <div class="container">
@@ -43,7 +44,6 @@
             </div>
         </div>
 
-        <!-- HERO BACKGROUND IMAGE -->
         <div class="hero-bg">
             <img src="./images/foto.png" alt="foto-gitar" class="guitar-img">
             <img src="./images/shadowbawahgitar.png" alt="bayangan-gitar" class="guitar-shadow">
@@ -51,7 +51,7 @@
         </div>
     </section>
 
-    <!-- TENTANG KAMI SECTION -->
+    <!-- TENTANG KAMI -->
     <section id="tentang" class="tentang-kami">
         <h2>Tentang Kami</h2>
         <div class="container-tentang">
@@ -59,24 +59,57 @@
                 <img src="./images/logogitarsby2.png" alt="Logo Gitar Surabaya">
             </div>
             <div class="text-tentang">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aut ullam cumque culpa! Doloremque
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aut ullam cumque culpa! Doloremque
                     similique quod, ipsam nemo reiciendis earum nulla ex placeat distinctio nihil aliquid in nostrum
-                    officiis quia?
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio velit architecto soluta
+                    officiis quia?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio velit architecto soluta
                     accusantium reiciendis sed labore maxime odit quod voluptatibus obcaecati maiores tempore cum ipsam
-                    sit minima, impedit consequuntur ipsa!
-                </p>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, porro consectetur. Dolorum
+                    sit minima, impedit consequuntur ipsa!</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, porro consectetur. Dolorum
                     libero laborum recusandae cumque, temporibus labore doloremque, numquam autem ullam provident illum
-                    eligendi non consequuntur amet sapiente necessitatibus.
-                </p>
+                    eligendi non consequuntur amet sapiente necessitatibus.</p>
             </div>
         </div>
     </section>
+
+    <!-- FOOTER -->
+    <!-- HTML -->
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="footer-logo">
+                <img src="./images/logofooter.png" alt="Gitar Surabaya">
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-socials">
+                <div class="social-item">
+                    <img src="./images/ig.png" alt="Instagram">
+                    <p>@gitarsurabaya</p>
+                </div>
+                <div class="social-item">
+                    <img src="./images/yt.png" alt="YouTube">
+                    <p>gitarsurabaya</p>
+                </div>
+                <div class="social-item">
+                    <img src="./images/wa.png" alt="WhatsApp">
+                    <p>+62 812 5997 0907</p>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-maps">
+                <div class="maps-title">
+                    <img src="./images/maps.png" alt="Map">
+                    <p>Maps</p>
+                </div>
+                <p>Jalan Nginden Semolo No.40<br>
+                    Surabaya Nginden, Semolowaru, Kec.<br>
+                    Sukolilo, Surabaya, Jawa Timur 60119</p>
+            </div>
+        </div>
+    </footer>
 
 
 </body>
