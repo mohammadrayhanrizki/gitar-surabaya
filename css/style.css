@@ -224,3 +224,57 @@ guitar-img {
   z-index: 0;
   opacity: 0.9;
 }
+
+
+/* ===== TENTANG KAMI SECTION ===== */
+.tentang-kami {
+  background-color: #fff;
+  padding: 100px 0;
+  margin-top: 100px;
+}
+
+.tentang-kami h2 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #000;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Container utama */
+.container-tentang {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 80px;
+  padding-left: 200px;
+  /* biar bener-bener nempel kiri */
+}
+
+/* Logo bagian kiri */
+.logo-tentang img {
+  width: 500px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  margin-left: 0;
+  /* pastikan ga ada jarak kiri */
+}
+
+/* Teks bagian kanan */
+.text-tentang {
+  flex: 1;
+}
+
+.text-tentang p {
+  font-size: 18px;
+  line-height: 1.9;
+  margin-left: 150px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+  max-width: 700px;
+}

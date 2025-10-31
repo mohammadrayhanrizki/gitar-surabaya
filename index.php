@@ -50,6 +50,35 @@
             <img src="./images/shadowbg.png" alt="shadow-bg" class="shadow-bg">
         </div>
     </section>
+
+    <!-- TENTANG KAMI SECTION -->
+    <section id="tentang" class="tentang-kami">
+        <h2>Tentang Kami</h2>
+        <div class="container-tentang">
+            <div class="logo-tentang">
+                <img src="./images/logogitarsby2.png" alt="Logo Gitar Surabaya">
+            </div>
+            <div class="text-tentang">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aut ullam cumque culpa! Doloremque
+                    similique quod, ipsam nemo reiciendis earum nulla ex placeat distinctio nihil aliquid in nostrum
+                    officiis quia?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio velit architecto soluta
+                    accusantium reiciendis sed labore maxime odit quod voluptatibus obcaecati maiores tempore cum ipsam
+                    sit minima, impedit consequuntur ipsa!
+                </p>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, porro consectetur. Dolorum
+                    libero laborum recusandae cumque, temporibus labore doloremque, numquam autem ullam provident illum
+                    eligendi non consequuntur amet sapiente necessitatibus.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
 </body>
 
 </html>
