@@ -68,9 +68,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe all elements with data-animate attribute
 const animateElements = document.querySelectorAll("[data-animate]");
-animateElements.forEach((el) => {
-  observer.observe(el);
-});
+animateElements.forEach((el) => observer.observe(el));
 
 // ========================================
 // SMOOTH SCROLL FOR ANCHOR LINKS

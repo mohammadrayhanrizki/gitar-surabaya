@@ -35,7 +35,7 @@
             <!-- Navigasi utama -->
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#tentang">Tentang Kami</a></li>
+                    <li><a href="#tentang" class="active">Tentang Kami</a></li>
                     <li><a href="layanan.php">Layanan</a></li>
                     <li><a href="galeri.php">Galeri</a></li>
                 </ul>
