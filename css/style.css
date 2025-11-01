@@ -930,6 +930,29 @@ body {
     font-size: 13px;
     color: #555;
   }
+
+  .layanan-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .layanan-text{
+    flex: 1;
+  }
+  
+  .layanan-image{
+    flex: 1;
+    text-align: right;
+  }
+
+  .layanan-image img{
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
   
   /* ===== RESPONSIVE ===== */
   @media (max-width: 768px) {
@@ -950,5 +973,18 @@ body {
   
     .layanan-list {
       align-items: center;
+    }
+
+    .layanan-content{
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .layanan-image{
+      text-align: center;
+    }
+
+    .layanan-image img{
+      width: 70%;
     }
   }

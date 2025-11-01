@@ -39,6 +39,9 @@
 
   <!--=====BAGIAN LAYANAN=====-->
   <main class="layanan">
+    <div class="layanan-content">
+      <div class="layanan-teks">
+
     <h2>Layanan Kami</h2>
     <p class="subtitle">Di Gitar Surabaya kami melayani</p>
 
@@ -51,9 +54,14 @@
     </ul>
 
     <p class="note">*Syarat&Ketentuan Berlaku</p>
+      </div>
+
     <div class="layanan-image">
       <img src="./images/layanan.jpg" alt="Layanan Gitar Surabaya">
-
+    </div>
+    </div>
+  </main>
+  
   <footer class="footer" data-animate="fade-up">
     <div class="container-footer">
       <div class="footer-logo" data-animate="fade-up" data-delay="100">
