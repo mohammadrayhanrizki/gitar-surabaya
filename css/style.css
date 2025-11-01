@@ -731,4 +731,90 @@ body {
   .text-tentang p {
     font-size: 13px;
   }
+
+}
+
+/* 1. Navbar Galeri */
+.navbar-galeri {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    border-bottom: 1px solid #eee;
+}
+
+.logo span {
+    color: #E53935; 
+    font-weight: 900;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 25px;
+    font-weight: 500;
+}
+
+.nav-links a.active {
+    color: #E53935; /* Link yang aktif berwarna merah */
+    border-bottom: 2px solid #E53935;
+    padding-bottom: 3px;
+}
+
+.btn-belanja {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Konten Utama */
+.content-wrapper {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 30px 50px;
+}
+
+.page-title {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Grid Galeri (Menggunakan CSS Grid) */
+.gallery-grid {
+    display: grid;
+    /* Membuat 5 kolom dengan lebar yang sama */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 30px; /* Jarak antar item */
+    padding: 20px 0;
+}
+
+.gallery-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Kontainer item */
+}
+
+.item-placeholder {
+    width: 100%;
+    /* Rasio aspek: sekitar 4:3 (Tinggi sedikit lebih besar dari lebar) */
+    height: 250px; 
+    
+    /* Style untuk meniru bentuk melengkung dan bayangan */
+    background-color: #E0E0E0; /* Warna abu-abu terang */
+    border-radius: 30px 0 30px 30px; /* Sudut melengkung yang spesifik */
+    
+    /* Bayangan yang meniru tampilan 3D */
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
+    
+    /* Tambahan style untuk meniru kedalaman (opsional) */
+    border: 1px solid #ccc;
+    transform: translate(-3px, -3px); /* Geser elemen ke atas-kiri sedikit */
 }
