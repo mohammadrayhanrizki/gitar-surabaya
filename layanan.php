@@ -32,16 +32,27 @@
           <li><a href="layanan.php" class="active">Layanan</a></li>
           <li><a href="galeri.php">Galeri</a></li>
         </ul>
+        <a href="#"class="btn-belanja">BELANJA</a>
       </nav>
     </div>
   </header>
 
+  <!--=====BAGIAN LAYANAN=====-->
+  <main class="layanan">
+    <h2>Layanan Kami</h2>
+    <p class="subtitle">Di Gitar Surabaya kami melayani</p>
 
+    <ul class="layanan-list">
+      <li><i class="fa-regular fa-circle-check"></i> Les Gitar Gratis</li>
+      <li><i class="fa-regular fa-circle-check"></i> Jual Beli Gitar</li>
+      <li><i class="fa-regular fa-circle-check"></i> Servis Gitar</li>
+      <li><i class="fa-regular fa-circle-check"></i> Gadai Gitar</li>
+      <li><i class="fa-regular fa-circle-check"></i> Sewa Gitar</li>
+    </ul>
 
-
-
-
-  
+    <p class="note">*Syarat&Ketentuan Berlaku</p>
+    <div class="layanan-image">
+      <img src="./images/layanan.jpg" alt="Layanan Gitar Surabaya">
 
   <footer class="footer" data-animate="fade-up">
     <div class="container-footer">
@@ -76,6 +87,7 @@
   </footer>
 
   <script src="./includes/script.js"></script>
+  </section>
 </body>
 
 </html>

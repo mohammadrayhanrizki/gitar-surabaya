@@ -844,3 +844,111 @@ body {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 14px 14px 20px rgba(0, 0, 0, 0.12);
 }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 80px;
+    background: white;
+  }
+  
+  .logo h1 {
+    font-size: 22px;
+    line-height: 1.1;
+    font-weight: 600;
+  }
+  
+  .logo .g,
+  .logo .s {
+    color: #c6372c;
+    font-size: 30px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover,
+  .nav-links .active {
+    color: #c6372c;
+  }
+  
+  .btn-belanja {
+    background: #000;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  /* ===== LAYANAN ===== */
+  .layanan {
+    padding: 100px 150px;
+  }
+  
+  .layanan h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 50px;
+  }
+  
+  .layanan-list {
+    list-style: none;
+    font-size: 22px;
+    font-weight: 600;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .layanan-list i {
+    margin-right: 12px;
+    font-size: 26px;
+  }
+  
+  .note {
+    font-size: 13px;
+    color: #555;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      gap: 15px;
+      padding: 20px;
+    }
+  
+    .nav-links {
+      gap: 20px;
+    }
+  
+    .layanan {
+      padding: 60px 20px;
+      text-align: center;
+    }
+  
+    .layanan-list {
+      align-items: center;
+    }
+  }

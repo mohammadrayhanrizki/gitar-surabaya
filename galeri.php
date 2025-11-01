@@ -39,10 +39,12 @@
 
     <main class="content-wrapper">
         <section class="gallery-grid">
-            <?php for ($i = 1; $i <= 10; $i++): ?>
+            <?php for ($i = 1; $i <= 10; $i++):
+                //ulang 2 foto bergantian
+                $foto = ($i % 2 == 0) ? 'fotogaleri2.jpg' : 'fotogaleri1.jpg';
+            ?>
                 <div class="gallery-item" data-animate="zoom-fade" data-delay="<?= $i * 100 ?>">
-                    <div class="item-placeholder">
-                        <!-- <img src="images/galeri<?= $i ?>.jpg" alt="Galeri <?= $i ?>"> -->
+                        <img src="images/<?= $foto ?>" alt="Galeri <?= $i ?>">
                     </div>
                 </div>
             <?php endfor; ?>
