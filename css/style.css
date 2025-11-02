@@ -850,7 +850,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 25px 80px;
+    padding: 15px 60px;
     background: white;
   }
   
@@ -870,6 +870,8 @@ body {
     list-style: none;
     display: flex;
     gap: 40px;
+    flex: 1;
+    justify-content: center;
   }
   
   .nav-links a {
@@ -882,15 +884,16 @@ body {
   .nav-links a:hover,
   .nav-links .active {
     color: #c6372c;
+    border-bottom: 2px solid #c6372c;
   }
   
   .btn-belanja {
     background: #000;
     color: #fff;
-    padding: 10px 22px;
-    border-radius: 6px;
+    padding: 10px 20px;
     text-decoration: none;
     font-weight: 600;
+    border-radius: 6px;
   }
   
   /* ===== LAYANAN ===== */
@@ -953,6 +956,67 @@ body {
     border-radius: 10px;
     object-fit: cover;
   }
+
+  .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 60px;
+  background: white;
+}
+
+/* Logo kiri */
+.logo h1 {
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.logo .g,
+.logo .s {
+  color: #c6372c;
+  font-size: 30px;
+}
+
+/* Menu tengah */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  flex: 1;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+  color: #c6372c;
+  border-bottom: 2px solid #c6372c;
+}
+
+/* Tombol kanan */
+.btn-belanja {
+  background: #000;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.btn-belanja:hover {
+  background: #c6372c;
+}
+
   
   /* ===== RESPONSIVE ===== */
   @media (max-width: 768px) {
@@ -966,6 +1030,10 @@ body {
       gap: 20px;
     }
   
+    .btn-belanja{
+      margin-top: 10px;
+    }
+
     .layanan {
       padding: 60px 20px;
       text-align: center;
@@ -988,3 +1056,237 @@ body {
       width: 70%;
     }
   }
+
+/* ========== NAVBAR ========== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo span {
+  font-size: 24px;
+  color: #E53935;
+  font-weight: bold;
+}
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 450px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
+  background: #f9f9f9;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #E53935;
+}
+
+.cart-icon {
+  font-size: 20px;
+}
+
+/* ========== BANNER SLIDER ========== */
+.banner-slider {
+  position: relative;
+  padding: 30px 60px;
+}
+
+.slider-placeholder {
+  width: 100%;
+  height: 250px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #444;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.left-arrow {
+  left: 40px;
+}
+
+.right-arrow {
+  right: 40px;
+}
+
+/* ========== PRODUK ========== */
+.product-section {
+  position: relative;
+  padding: 40px 60px;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.product-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.product-card {
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 10px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+}
+
+.product-image-placeholder {
+  width: 100%;
+  height: 150px;
+  background: #e9e9e9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-info {
+  text-align: center;
+}
+
+.product-name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  color: #E53935;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.product-status {
+  font-size: 13px;
+  color: #555;
+}
+
+/* Scroll button */
+.scroll-arrow {
+  position: absolute;
+  top: 55%;
+  right: 40px;
+  transform: translateY(-50%);
+  background: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #444;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+/* ========== BRAND SECTION ========== */
+.brand-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 60px 40px;
+}
+.brand-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px; /* lebar kolom logo */
+  flex-shrink: 0;
+  text-align: center;
+}
+.brand-logo-placeholder {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.brand-section .horizontal-scroll {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .banner-slider {
+    padding: 20px;
+  }
+
+  .product-section, .brand-section {
+    padding: 20px;
+  }
+
+  .scroll-arrow {
+    display: none;
+  }
+
+  .slider-arrow {
+    display: none;
+  }
+}

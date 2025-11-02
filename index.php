@@ -54,7 +54,7 @@
                     iusto! Sit, voluptas pariatur sunt dolorem alias repellendus soluta cum modi vero vitae!</p>
                 <div class="hero-buttons" data-animate="fade-up" data-delay="200">
                     <!-- Tombol aksi utama -->
-                    <a href="#belanja" class="btn-primary">BELANJA</a>
+                    <a href="marketplace.php" class="btn-primary">BELANJA</a>
                     <a href="#kontak" class="btn-outline">KONTAK</a>
                 </div>
             </div>

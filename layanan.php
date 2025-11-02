@@ -26,14 +26,12 @@
         <span></span><span></span><span></span>
       </button>
 
-      <nav class="main-nav">
-        <ul>
+        <ul class ="nav-links">
           <li><a href="index.php">Tentang Kami</a></li>
           <li><a href="layanan.php" class="active">Layanan</a></li>
           <li><a href="galeri.php">Galeri</a></li>
         </ul>
-        <a href="#"class="btn-belanja">BELANJA</a>
-      </nav>
+        <a href="marketplace.php"class="btn-belanja">BELANJA</a>
     </div>
   </header>
 
