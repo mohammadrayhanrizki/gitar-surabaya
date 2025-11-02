@@ -1,5 +1,5 @@
 <?php
-// galeri.php
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=check_circle" />
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -38,18 +39,18 @@
   <!--=====BAGIAN LAYANAN=====-->
   <main class="layanan">
     <div class="layanan-content">
-      <div class="layanan-teks">
+      <div class="layanan-text">
 
     <h2>Layanan Kami</h2>
     <p class="subtitle">Di Gitar Surabaya kami melayani</p>
 
     <ul class="layanan-list">
-      <li><i class="fa-regular fa-circle-check"></i> Les Gitar Gratis</li>
-      <li><i class="fa-regular fa-circle-check"></i> Jual Beli Gitar</li>
-      <li><i class="fa-regular fa-circle-check"></i> Servis Gitar</li>
-      <li><i class="fa-regular fa-circle-check"></i> Gadai Gitar</li>
-      <li><i class="fa-regular fa-circle-check"></i> Sewa Gitar</li>
-    </ul>
+  <li><span class="material-symbols-outlined">check_circle</span> Les Gitar Gratis</li>
+  <li><span class="material-symbols-outlined">check_circle</span> Jual Beli Gitar</li>
+  <li><span class="material-symbols-outlined">check_circle</span> Servis Gitar</li>
+  <li><span class="material-symbols-outlined">check_circle</span> Gadai Gitar</li>
+  <li><span class="material-symbols-outlined">check_circle</span> Sewa Gitar</li>
+</ul>
 
     <p class="note">*Syarat&Ketentuan Berlaku</p>
       </div>
@@ -59,7 +60,7 @@
     </div>
     </div>
   </main>
-  
+
   <footer class="footer" data-animate="fade-up">
     <div class="container-footer">
       <div class="footer-logo" data-animate="fade-up" data-delay="100">
