@@ -18,30 +18,7 @@
 
     <!-- HEADER -->
     <!-- Bagian header berisi logo dan navigasi -->
-    <header class="site-header">
-        <div class="container">
-            <div class="logo">
-                <!-- Logo dan link ke halaman utama -->
-                <a href="index.php"><img src="./images/logo-1.png" alt="Logo Gitar Surabaya"></a>
-            </div>
-
-            <!-- Tombol hamburger untuk menu mobile -->
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <!-- Navigasi utama -->
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#tentang" class="active">Tentang Kami</a></li>
-                    <li><a href="layanan.php">Layanan</a></li>
-                    <li><a href="galeri.php">Galeri</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <?php include './includes/navbar.php'; ?>
 
     <!-- HERO SECTION -->
     <!-- Bagian utama hero dengan teks promosi dan gambar -->
@@ -95,44 +72,7 @@
 
     <!-- FOOTER -->
     <!-- Bagian bawah halaman berisi logo, kontak sosial, dan alamat -->
-    <footer class="footer" data-animate="fade-up">
-        <div class="container-footer">
-            <div class="footer-logo" data-animate="fade-up" data-delay="100">
-                <img src="./images/logofooter.png" alt="Gitar Surabaya">
-            </div>
-
-            <div class="footer-divider"></div>
-
-            <!-- Informasi sosial media -->
-            <div class="footer-socials" data-animate="fade-up" data-delay="200">
-                <div class="social-item">
-                    <img src="./images/ig.png" alt="Instagram">
-                    <p>@gitarsurabaya</p>
-                </div>
-                <div class="social-item">
-                    <img src="./images/yt.png" alt="YouTube">
-                    <p>gitarsurabaya</p>
-                </div>
-                <div class="social-item">
-                    <img src="./images/wa.png" alt="WhatsApp">
-                    <p>+62 812 5997 0907</p>
-                </div>
-            </div>
-
-            <div class="footer-divider"></div>
-
-            <!-- Alamat / peta -->
-            <div class="footer-maps" data-animate="fade-up" data-delay="300">
-                <div class="maps-title">
-                    <img src="./images/maps.png" alt="Map">
-                    <p>Maps</p>
-                </div>
-                <p>Jalan Nginden Semolo No.40<br>
-                    Surabaya Nginden, Semolowaru, Kec.<br>
-                    Sukolilo, Surabaya, Jawa Timur 60119</p>
-            </div>
-        </div>
-    </footer>
+    <?php include './includes/footer.php'; ?>
 
     <!-- Memuat file JavaScript -->
     <script src="./includes/script.js"></script>

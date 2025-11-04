@@ -17,70 +17,23 @@
 </head>
 
 <body>
-    <header class="site-header">
-        <div class="container">
-            <div class="logo">
-                <a href="index.php"><img src="./images/logo-1.png" alt="Logo Gitar Surabaya"></a>
-            </div>
-
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-
-                <ul class="nav-links">
-                    <li><a href="index.php">Tentang Kami</a></li>
-                    <li><a href="layanan.php">Layanan</a></li>
-                    <li><a href="galeri.php" class="active">Galeri</a></li>
-                </ul>
-                <a href="marketplace.php"class="btn-belanja">BELANJA</a>
-        </div>
-    </header>
+    <?php include './includes/navbar.php'; ?>
 
     <main class="content-wrapper">
         <section class="gallery-grid">
             <?php for ($i = 1; $i <= 10; $i++):
                 //ulang 2 foto bergantian
                 $foto = ($i % 2 == 0) ? 'fotogaleri2.jpg' : 'fotogaleri1.jpg';
-            ?>
+                ?>
                 <div class="gallery-item" data-animate="zoom-fade" data-delay="<?= $i * 100 ?>">
-                        <img src="images/<?= $foto ?>" alt="Galeri <?= $i ?>">
-                    </div>
+                    <img src="images/<?= $foto ?>" alt="Galeri <?= $i ?>">
+                </div>
                 </div>
             <?php endfor; ?>
         </section>
     </main>
 
-    <footer class="footer" data-animate="fade-up">
-        <div class="container-footer">
-            <div class="footer-logo" data-animate="fade-up" data-delay="100">
-                <img src="./images/logofooter.png" alt="Gitar Surabaya">
-            </div>
-
-            <div class="footer-divider"></div>
-
-            <div class="footer-socials" data-animate="fade-up" data-delay="200">
-                <div class="social-item"><img src="./images/ig.png" alt="Instagram">
-                    <p>@gitarsurabaya</p>
-                </div>
-                <div class="social-item"><img src="./images/yt.png" alt="YouTube">
-                    <p>gitarsurabaya</p>
-                </div>
-                <div class="social-item"><img src="./images/wa.png" alt="WhatsApp">
-                    <p>+62 812 5997 0907</p>
-                </div>
-            </div>
-
-            <div class="footer-divider"></div>
-
-            <div class="footer-maps" data-animate="fade-up" data-delay="300">
-                <div class="maps-title"><img src="./images/maps.png" alt="Map">
-                    <p>Maps</p>
-                </div>
-                <p>Jalan Nginden Semolo No.40<br>Surabaya Nginden, Semolowaru, Kec.<br>Sukolilo, Surabaya, Jawa Timur
-                    60119</p>
-            </div>
-        </div>
-    </footer>
+    <?php include './includes/footer.php'; ?>
 
     <script src="./includes/script.js"></script>
 </body>
