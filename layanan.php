@@ -15,6 +15,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=check_circle" />
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="./images/logo.png">
 </head>
 
 <body>
