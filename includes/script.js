@@ -30,6 +30,15 @@ document.addEventListener("click", (e) => {
   }
 });
 
+window.addEventListener("load", () => {
+  const header = document.querySelector(".site-header");
+  const main = document.querySelector(".layanan");
+  if (header && main) {
+    main.style.paddingTop = header.offsetHeight + 40 + "px";
+  }
+});
+
+
 // ========================================
 // STICKY HEADER ON SCROLL
 // ========================================
@@ -398,24 +407,27 @@ window.addEventListener("scroll", () => {
   }
 });
 
+
+
+
 // ========================================
 // MARKETPLACE - LAZY LOADING IMAGES
 // ========================================
 // TODO: When you add real images, implement lazy loading
 // Example:
-// const imageObserver = new IntersectionObserver((entries, observer) => {
-//   entries.forEach(entry => {
-//     if (entry.isIntersecting) {
-//       const img = entry.target;
-//       img.src = img.dataset.src;
-//       img.classList.add('loaded');
-//       observer.unobserve(img);
-//     }
-//   });
-// });
-//
-// document.querySelectorAll('img[data-src]').forEach(img => {
-//   imageObserver.observe(img);
-// });
+const imageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.classList.add('loaded');
+      observer.unobserve(img);
+    }
+  });
+});
+
+document.querySelectorAll('img[data-src]').forEach(img => {
+  imageObserver.observe(img);
+});
 
 console.log("Marketplace JavaScript loaded successfully! 🎸");

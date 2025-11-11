@@ -1,64 +1,3 @@
-/**
- * DOKUMENTASI CSS GITAR SURABAYA
- * ==============================
- * File ini berisi styling untuk website Gitar Surabaya
- * Dibuat dengan mobile-first approach dan responsive design
- *
- * DAFTAR ISI:
- * -----------
- * 1. Reset & Base Styles
- *    - Reset default styling
- *    - Font family dan warna dasar
- * 
- * 2. Animasi
- *    - fadeIn: Memudar masuk
- *    - fadeUp: Memudar dari bawah ke atas  
- *    - fadeDown: Memudar dari atas ke bawah
- *    - slideLeft: Geser dari kiri
- *    - slideRight: Geser dari kanan
- *    - zoomFadeIn: Zoom dan memudar masuk
- *
- * 3. Header & Navigasi
- *    - Fixed header dengan background transparan
- *    - Logo sizing dan transisi
- *    - Hamburger menu untuk mobile
- *    - Navigasi links dengan hover effect
- *
- * 4. Hero Section
- *    - Full height hero dengan konten centered
- *    - Heading dan paragraph styling
- *    - CTA buttons
- *    - Hero image dengan shadow effect
- *
- * 5. Tentang Kami
- *    - Section spacing dan layout
- *    - Logo dan text content
- *
- * 6. Footer
- *    - Layout 3 kolom 
- *    - Social media links
- *    - Lokasi maps
- *
- * 7. Gallery Page
- *    - Grid layout 5 kolom
- *    - Responsive grid adjustment
- *    - Gallery item styling
- *
- * 8. Marketplace Page
- *    - Navigation bar
- *    - Product slider
- *    - Product cards
- *    - Brand showcase
- *
- * 9. Responsive Breakpoints
- *    - Desktop (1200px+)
- *    - Tablet (768px - 1199px) 
- *    - Mobile (< 768px)
- *    - Small Mobile (< 480px)
- *
- * @author GitHub Copilot
- * @version 1.0
- */
 /* Reset default styling untuk semua elemen */
 * {
   margin: 0;
@@ -961,6 +900,20 @@ body {
 /* ===== LAYANAN ===== */
 .layanan {
   padding: 100px 150px;
+  padding-top: 20px
+} 
+
+.layanan-content {
+  align-items: flex-start;
+}
+
+.layanan-text {
+  margin-top: 20px;
+  flex: 3;
+}
+
+.layanan-text h2 {
+  margin-top: 10px;
 }
 
 .layanan h2 {
@@ -999,7 +952,7 @@ body {
 .layanan-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 80px;
 }
 
@@ -1013,8 +966,8 @@ body {
 }
 
 .layanan-image img {
-  width: 80%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 900px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -1115,7 +1068,7 @@ body {
   }
 
   .layanan-image img {
-    width: 70%;
+    width: 0%;
   }
 }
 
@@ -2104,4 +2057,9 @@ body {
   .brand-logo-marketplace img {
     width: 80px;
   }
+}
+
+.galeri-text {
+  text-align: center;
+  margin-bottom: 40px;
 }

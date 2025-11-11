@@ -14,12 +14,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
     <?php include './includes/navbar.php'; ?>
 
     <main class="content-wrapper">
+        <div class="galeri-text">
+            <h2 data-animate="fade-down">Galeri Pembeli</h2>
+            <p data-animate="fade-up" data-delay="100">Berikut adalah beberapa foto dari pelanggan kami</p>
+        </div>
         <section class="gallery-grid">
             <?php for ($i = 1; $i <= 10; $i++):
                 //ulang 2 foto bergantian
