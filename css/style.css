@@ -741,13 +741,19 @@ body {
 
 /* Main navbar marketplace - sticky positioning */
 .navbar-marketplace {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid #eee;
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+}
+
+/* Styling navbar marketplace saat di-scroll */
+.navbar-marketplace.scrolled {
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* Navbar container - flex layout untuk logo, search, menu */
@@ -1579,6 +1585,7 @@ body {
   /* Marketplace mobile */
   .navbar-container {
     padding: 15px 20px;
+    gap: 10px;
   }
 
   .logo-marketplace img {
@@ -1587,10 +1594,20 @@ body {
 
   .hamburger-marketplace {
     display: flex;
+    order: 4;
+    z-index: 1001;
+    /* Pastikan di atas elemen lain */
+    position: relative;
+    /* Untuk z-index bekerja */
+    /* Posisi terakhir (setelah cart) */
   }
 
   .search-bar-marketplace {
-    width: 92%;
+    flex: 1;
+    max-width: none;
+    margin: 0 10px;
+    order: 2;
+    /* Setelah logo */
   }
 
   .search-bar-marketplace input {
@@ -1599,31 +1616,56 @@ body {
     padding: 10px 16px 10px 42px;
   }
 
-  /* Nav right mobile - slide in dari kanan */
+  /* Nav right mobile - disembunyikan di navbar, muncul di hamburger menu */
   .nav-right-marketplace {
+    display: none !important;
+    /* Force hide di navbar mobile */
+  }
+
+  /* Nav right mobile - slide in dari kanan saat hamburger dibuka */
+  .nav-right-marketplace.active {
+    display: flex !important;
+    /* Force show saat active */
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
+    /* Slide ke posisi visible */
     width: 70%;
     max-width: 300px;
     height: 100vh;
     background-color: #fff;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transition: right 0.4s ease;
     z-index: 999;
     padding-top: 100px;
     flex-direction: column;
     gap: 30px;
     align-items: flex-start;
     padding-left: 40px;
+    animation: slideInFromRight 0.4s ease;
   }
 
-  .nav-right-marketplace.active {
-    right: 0;
+  @keyframes slideInFromRight {
+    from {
+      right: -100%;
+    }
+
+    to {
+      right: 0;
+    }
   }
 
   .nav-right-marketplace a {
     font-size: 18px;
+  }
+
+  /* Cart icon tetap visible di navbar mobile */
+  .cart-link {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1001;
+    order: 3;
+    /* Setelah search, sebelum hamburger */
   }
 
   /* Banner mobile */

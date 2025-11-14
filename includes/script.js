@@ -1,34 +1,38 @@
 // ========================================
 // HAMBURGER MENU TOGGLE
 // ========================================
+// [Kode Perbaikan]
+
 const hamburger = document.querySelector(".hamburger");
 const mainNav = document.querySelector(".main-nav");
 const body = document.body;
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  mainNav.classList.toggle("active");
-  body.style.overflow = mainNav.classList.contains("active") ? "hidden" : "";
-});
-
-// Close menu when clicking on nav links
-const navLinks = document.querySelectorAll(".main-nav a");
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    mainNav.classList.remove("active");
-    body.style.overflow = "";
+if (hamburger && mainNav) {
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    mainNav.classList.toggle("active");
+    body.style.overflow = mainNav.classList.contains("active") ? "hidden" : "";
   });
-});
 
-// Close menu when clicking outside
-document.addEventListener("click", (e) => {
-  if (!mainNav.contains(e.target) && !hamburger.contains(e.target)) {
-    hamburger.classList.remove("active");
-    mainNav.classList.remove("active");
-    body.style.overflow = "";
-  }
-});
+  const navLinks = document.querySelectorAll(".main-nav a");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      mainNav.classList.remove("active");
+      body.style.overflow = "";
+    });
+  }); 
+
+  document.addEventListener("click", (e) => {
+    if (mainNav.classList.contains("active")) {
+      if (!mainNav.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove("active");
+        mainNav.classList.remove("active");
+        body.style.overflow = "";
+      }
+    }
+  });
+} // <-- TUTUP IF DI SINI
 
 window.addEventListener("load", () => {
   const header = document.querySelector(".site-header");
@@ -37,7 +41,6 @@ window.addEventListener("load", () => {
     main.style.paddingTop = header.offsetHeight + 40 + "px";
   }
 });
-
 
 // ========================================
 // STICKY HEADER ON SCROLL
@@ -124,16 +127,43 @@ window.addEventListener("load", () => {
 });
 
 // ========================================
+// MARKETPLACE - STICKY NAVBAR ON SCROLL
+// ========================================
+const navbarMarketplace = document.querySelector(".navbar-marketplace");
+
+if (navbarMarketplace) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 100) {
+      navbarMarketplace.classList.add("scrolled");
+    } else {
+      navbarMarketplace.classList.remove("scrolled");
+    }
+  });
+}
+
+// ========================================
 // MARKETPLACE - HAMBURGER MENU
 // ========================================
 const hamburgerMarketplace = document.querySelector(".hamburger-marketplace");
 const navRightMarketplace = document.querySelector(".nav-right-marketplace");
 
 if (hamburgerMarketplace && navRightMarketplace) {
-  hamburgerMarketplace.addEventListener("click", () => {
+  let isToggling = false; // Flag untuk mencegah penutupan saat toggle
+
+  hamburgerMarketplace.addEventListener("click", (e) => {
+    e.stopPropagation(); // Mencegah event bubbling
+    e.preventDefault(); // Mencegah default behavior
+
+    isToggling = true; // Set flag untuk mencegah "click outside" handler
+
     hamburgerMarketplace.classList.toggle("active");
     navRightMarketplace.classList.toggle("active");
     body.style.overflow = navRightMarketplace.classList.contains("active") ? "hidden" : "";
+
+    // Reset flag setelah toggle selesai (memberi waktu untuk event propagation)
+    setTimeout(() => {
+      isToggling = false;
+    }, 100);
   });
 
   // Close menu when clicking on nav links
@@ -146,12 +176,19 @@ if (hamburgerMarketplace && navRightMarketplace) {
     });
   });
 
-  // Close menu when clicking outside
+  // Close menu when clicking outside (hanya jika menu sedang aktif dan tidak sedang toggle)
   document.addEventListener("click", (e) => {
-    if (!navRightMarketplace.contains(e.target) && !hamburgerMarketplace.contains(e.target)) {
-      hamburgerMarketplace.classList.remove("active");
-      navRightMarketplace.classList.remove("active");
-      body.style.overflow = "";
+    // Skip jika sedang dalam proses toggle
+    if (isToggling) return;
+
+    // Hanya tutup jika menu sedang aktif
+    if (navRightMarketplace.classList.contains("active")) {
+      // Pastikan klik tidak di dalam menu atau hamburger button
+      if (!navRightMarketplace.contains(e.target) && !hamburgerMarketplace.contains(e.target)) {
+        hamburgerMarketplace.classList.remove("active");
+        navRightMarketplace.classList.remove("active");
+        body.style.overflow = "";
+      }
     }
   });
 }
@@ -407,26 +444,23 @@ window.addEventListener("scroll", () => {
   }
 });
 
-
-
-
 // ========================================
 // MARKETPLACE - LAZY LOADING IMAGES
 // ========================================
 // TODO: When you add real images, implement lazy loading
 // Example:
 const imageObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       const img = entry.target;
       img.src = img.dataset.src;
-      img.classList.add('loaded');
+      img.classList.add("loaded");
       observer.unobserve(img);
     }
   });
 });
 
-document.querySelectorAll('img[data-src]').forEach(img => {
+document.querySelectorAll("img[data-src]").forEach((img) => {
   imageObserver.observe(img);
 });
 
