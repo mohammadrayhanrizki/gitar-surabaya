@@ -1,0 +1,212 @@
+/* ========================================
+   GLOBAL.CSS
+   File CSS Global untuk semua halaman
+   Berisi: Reset, Global Styling, dan Animasi/Keyframes
+======================================== */
+
+/* ========================================
+   RESET & GLOBAL STYLING
+======================================== */
+
+/* 
+ * Reset default margin & padding untuk semua elemen
+ * Memastikan konsistensi styling di semua browser
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 
+ * Styling dasar body
+ * Mengatur font family, warna background, dan properti dasar lainnya
+ */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  color: #333;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   KEYFRAMES & ANIMASI
+   Animasi yang digunakan di berbagai halaman
+======================================== */
+
+/* 
+ * Animasi fade in - elemen muncul dengan efek fade
+ * Digunakan untuk transisi halus saat elemen muncul
+ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* 
+ * Animasi fade up - elemen muncul dari bawah dengan efek fade
+ * Digunakan untuk hero section dan konten utama
+ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 
+ * Animasi fade down - elemen muncul dari atas dengan efek fade
+ * Digunakan untuk heading dan judul section
+ */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 
+ * Animasi slide left - elemen muncul dari kiri dengan efek scale
+ * Digunakan untuk logo dan gambar di section tentang kami
+ */
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* 
+ * Animasi slide right - elemen muncul dari kanan
+ * Digunakan untuk teks konten di section tentang kami
+ */
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 
+ * Animasi zoom fade in - elemen muncul dengan efek zoom dan fade
+ * Digunakan untuk gallery items
+ */
+@keyframes zoomFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 
+ * Animasi shimmer - efek shimmer untuk loading state
+ * Digunakan untuk placeholder gambar produk di marketplace
+ */
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* ========================================
+   ANIMATION CLASSES
+   Class untuk mengaktifkan animasi pada elemen
+======================================== */
+
+/* 
+ * Base class untuk elemen yang akan dianimasikan
+ * Elemen akan tersembunyi (opacity: 0) sampai class 'animated' ditambahkan
+ */
+[data-animate] {
+  opacity: 0;
+}
+
+/* 
+ * Class untuk menjalankan animasi
+ * Durasi, fill mode, dan timing function diatur di sini
+ */
+[data-animate].animated {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+/* 
+ * Animasi fade-in - elemen muncul dengan efek fade
+ */
+[data-animate="fade-in"].animated {
+  animation-name: fadeIn;
+}
+
+/* 
+ * Animasi fade-up - elemen muncul dari bawah
+ */
+[data-animate="fade-up"].animated {
+  animation-name: fadeUp;
+}
+
+/* 
+ * Animasi fade-down - elemen muncul dari atas
+ */
+[data-animate="fade-down"].animated {
+  animation-name: fadeDown;
+}
+
+/* 
+ * Animasi slide-left - elemen muncul dari kiri
+ */
+[data-animate="slide-left"].animated {
+  animation-name: slideLeft;
+}
+
+/* 
+ * Animasi slide-right - elemen muncul dari kanan
+ */
+[data-animate="slide-right"].animated {
+  animation-name: slideRight;
+}
+
+/* 
+ * Animasi zoom-fade - elemen muncul dengan efek zoom dan fade
+ * Durasi sedikit lebih cepat untuk efek yang lebih dinamis
+ */
+[data-animate="zoom-fade"].animated {
+  animation-name: zoomFadeIn;
+  animation-duration: 0.7s;
+}

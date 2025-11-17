@@ -1,0 +1,162 @@
+/* ========================================
+   LAYANAN.CSS
+   File CSS khusus untuk halaman layanan.php
+   Berisi: Layanan Section dengan daftar layanan dan gambar
+======================================== */
+
+/* ========================================
+   LAYANAN SECTION
+   Section yang menampilkan layanan yang disediakan toko
+======================================== */
+
+/* 
+ * Main layanan container
+ * Container utama dengan padding yang cukup untuk spacing
+ */
+.layanan {
+  padding: 100px 150px;
+  padding-top: 20px;
+}
+
+/* 
+ * Layanan content wrapper
+ * Flex layout untuk mengatur teks dan gambar secara horizontal
+ */
+.layanan-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 80px;
+}
+
+/* 
+ * Text section layanan
+ * Bagian teks dengan flex: 1 untuk mengambil sisa ruang
+ */
+.layanan-text {
+  flex: 1;
+  margin-top: 20px;
+}
+
+/* 
+ * Heading layanan
+ * Judul "Layanan Kami" dengan font besar dan bold
+ */
+.layanan h2 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* 
+ * Subtitle layanan
+ * Teks deskripsi "Di Gitar Surabaya kami melayani"
+ */
+.subtitle {
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+/* 
+ * List layanan dengan icon
+ * Daftar layanan dengan icon check_circle dari Material Icons
+ */
+.layanan-list {
+  list-style: none;
+  font-size: 22px;
+  font-weight: 600;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* 
+ * Icon di dalam list layanan
+ * Icon check_circle dengan spacing yang sesuai
+ */
+.layanan-list i {
+  margin-right: 12px;
+  font-size: 26px;
+}
+
+/* 
+ * Note/catatan
+ * Teks kecil untuk syarat dan ketentuan
+ */
+.note {
+  font-size: 13px;
+  color: #555;
+}
+
+/* 
+ * Layanan image section
+ * Bagian gambar dengan text-align right untuk alignment
+ */
+.layanan-image {
+  flex: 1;
+  text-align: right;
+}
+
+/* 
+ * Gambar layanan
+ * Gambar dengan max-width dan border radius untuk styling
+ */
+.layanan-image img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* ========================================
+   RESPONSIVE - LAYANAN
+   Media queries untuk tablet dan mobile
+======================================== */
+
+/* Tablet (769px - 1024px) */
+@media (max-width: 1024px) {
+
+  /* Layanan dengan padding lebih kecil */
+  .layanan {
+    padding: 60px 40px;
+  }
+
+  /* Gap lebih kecil antara teks dan gambar */
+  .layanan-content {
+    gap: 40px;
+  }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+
+  /* Layanan mobile dengan padding minimal */
+  .layanan {
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  /* Layout vertikal di mobile */
+  .layanan-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* List layanan center aligned */
+  .layanan-list {
+    align-items: center;
+  }
+
+  /* Gambar center aligned */
+  .layanan-image {
+    text-align: center;
+  }
+
+  /* Gambar full width di mobile */
+  .layanan-image img {
+    width: 100%;
+  }
+}

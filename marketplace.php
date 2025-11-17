@@ -8,7 +8,12 @@
     <link rel="icon" type="image/png" href="./images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+<!-- Memuat stylesheet global -->
+<link rel="stylesheet" href="css/global.css">
+<!-- Memuat stylesheet komponen (navbar, footer, dll) -->
+<link rel="stylesheet" href="css/components.css">
+<!-- Memuat stylesheet khusus untuk halaman marketplace -->
+<link rel="stylesheet" href="css/marketplace.css">
 </head>
 
 <body>
@@ -387,38 +392,11 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container-footer">
-            <div class="footer-logo">
-                <img src="./images/logofooter.png" alt="Gitar Surabaya">
-            </div>
-            <div class="footer-divider"></div>
-            <div class="footer-socials">
-                <div class="social-item">
-                    <img src="./images/ig.png" alt="Instagram">
-                    <p>@gitarsurabaya</p>
-                </div>
-                <div class="social-item">
-                    <img src="./images/yt.png" alt="YouTube">
-                    <p>gitarsurabaya</p>
-                </div>
-                <div class="social-item">
-                    <img src="./images/wa.png" alt="WhatsApp">
-                    <p>+62 812 5997 0907</p>
-                </div>
-            </div>
-            <div class="footer-divider"></div>
-            <div class="footer-maps">
-                <div class="maps-title">
-                    <img src="./images/maps.png" alt="Map">
-                    <p>Maps</p>
-                </div>
-                <p>Jalan Nginden Semolo No.40<br>Surabaya Nginden, Semolowaru, Kec.<br>Sukolilo, Surabaya, Jawa Timur
-                    60119</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer -->
 
+    <?php include './includes/footer.php'; ?>
+
+    <!-- Memuat file JavaScript -->
     <script src="./includes/script.js"></script>
 </body>
 

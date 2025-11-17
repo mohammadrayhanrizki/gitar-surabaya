@@ -1,0 +1,157 @@
+/* ========================================
+   GALERI.CSS
+   File CSS khusus untuk halaman galeri.php
+   Berisi: Gallery Grid dan Content Wrapper
+======================================== */
+
+/* ========================================
+   CONTENT WRAPPER
+   Container utama untuk konten galeri
+======================================== */
+
+/* 
+ * Main content wrapper untuk galeri
+ * Container dengan max-width dan padding untuk spacing
+ */
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 50px 60px;
+}
+
+/* 
+ * Page title galeri
+ * Judul halaman "Galeri Pembeli" dengan styling yang menonjol
+ */
+.page-title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+/* 
+ * Galeri text section
+ * Section untuk judul dan deskripsi galeri
+ */
+.galeri-text {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* ========================================
+   GALLERY GRID
+   Grid layout untuk menampilkan foto-foto galeri
+======================================== */
+
+/* 
+ * Grid layout untuk galeri - 5 kolom
+ * Grid dengan 5 kolom untuk desktop dengan gap antar item
+ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  padding: 20px 0;
+}
+
+/* 
+ * Gallery item container
+ * Container untuk setiap item galeri dengan flex untuk centering
+ */
+.gallery-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+ * Placeholder untuk gallery item
+ * Container dengan background abu-abu dan border radius unik
+ * Efek shadow untuk memberikan depth
+ */
+.item-placeholder {
+  width: 100%;
+  height: 250px;
+  background-color: #E0E0E0;
+  border-radius: 30px 0 30px 30px;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.12);
+  border: 1px solid #d0d0d0;
+  transform: translate(-3px, -3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* 
+ * Gallery item image
+ * Gambar galeri dengan object-fit cover untuk menjaga aspect ratio
+ */
+.item-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 
+ * Hover effect pada gallery item
+ * Item naik sedikit dan shadow lebih besar saat hover
+ */
+.item-placeholder:hover {
+  transform: translate(0, -6px);
+  box-shadow: 14px 14px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================================
+   RESPONSIVE - GALLERY
+   Media queries untuk tablet dan mobile
+======================================== */
+
+/* Tablet (769px - 1024px) */
+@media (max-width: 1024px) {
+
+  /* Gallery grid menjadi 4 kolom di tablet */
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  /* Content wrapper dengan padding lebih kecil */
+  .content-wrapper {
+    padding: 140px 20px 60px;
+  }
+
+  /* Gallery grid menjadi 2 kolom di mobile */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 20px;
+  }
+}
+
+/* Small Mobile (up to 480px) */
+@media (max-width: 480px) {
+
+  /* Gallery grid menjadi 1 kolom di small mobile */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 16px;
+  }
+
+  /* Page title lebih kecil */
+  .page-title {
+    font-size: 28px;
+  }
+
+  /* Content wrapper dengan padding minimal */
+  .content-wrapper {
+    padding: 140px 15px 60px;
+  }
+}

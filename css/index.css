@@ -1,0 +1,438 @@
+/* ========================================
+   INDEX.CSS
+   File CSS khusus untuk halaman index.php
+   Berisi: Hero Section dan Tentang Kami Section
+======================================== */
+
+/* ========================================
+   HERO SECTION
+   Section utama di halaman depan dengan teks promosi dan gambar gitar
+======================================== */
+
+/* 
+ * Container hero dengan full height
+ * Section hero mengambil full viewport height dengan flex layout
+ */
+.hero-content {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  overflow: visible;
+  padding-top: 140px;
+}
+
+/* 
+ * Section container dengan max-width
+ * Container untuk konten hero dengan max-width untuk readability
+ */
+.container-section {
+  width: 85%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+/* 
+ * Text section di kiri
+ * Bagian teks hero dengan padding kiri untuk spacing
+ */
+.hero-content .text {
+  flex: 1;
+  padding-left: 50px;
+}
+
+/* 
+ * Subtitle hero
+ * Teks "TOKO GITAR" dengan styling yang menonjol
+ */
+.hero-content h5 {
+  font-size: 25px;
+  font-weight: 580;
+  color: #000;
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+}
+
+/* 
+ * Main heading hero
+ * Judul utama "PALING MURAH SE-INDONESIA" dengan font besar dan bold
+ */
+.hero-content h1 {
+  font-size: 60px;
+  font-weight: 800;
+  color: #000;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+/* 
+ * Paragraph/deskripsi hero
+ * Deskripsi toko dengan max-width untuk readability
+ */
+.hero-content p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 35px;
+  font-weight: 570;
+}
+
+/* 
+ * Container untuk buttons
+ * Flex container untuk tombol BELANJA dan KONTAK
+ */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* 
+ * Primary button (black background)
+ * Tombol BELANJA dengan background hitam
+ */
+.btn-primary {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 4px;
+  border: 2px solid #000;
+  transition: all 0.3s ease;
+  display: inline-block;
+  background-color: #000;
+  color: #fff;
+}
+
+/* 
+ * Hover effect primary button
+ * Background menjadi transparan dengan border merah saat hover
+ */
+.btn-primary:hover {
+  background-color: transparent;
+  color: #E53935;
+  border: 2px solid #E53935;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 57, 53, 0.1);
+}
+
+/* 
+ * Outline button (transparent background)
+ * Tombol KONTAK dengan border hitam dan background transparan
+ */
+.btn-outline {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 4px;
+  border: 2px solid #000;
+  transition: all 0.3s ease;
+  display: inline-block;
+  background-color: transparent;
+  color: #000;
+}
+
+/* 
+ * Hover effect outline button
+ * Border dan teks berubah menjadi merah saat hover
+ */
+.btn-outline:hover {
+  color: #E53935;
+  border: 2px solid #E53935;
+  transform: translateY(-2px);
+}
+
+/* 
+ * Hero background image positioning
+ * Container untuk gambar gitar di sebelah kanan
+ */
+.hero-bg {
+  position: absolute;
+  right: 50px;
+  top: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 
+ * Guitar main image
+ * Gambar gitar utama dengan efek rotate dan shadow
+ */
+.guitar-img {
+  width: 750px;
+  height: auto;
+  transform: rotate(5deg);
+  filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.25));
+}
+
+/* 
+ * Guitar shadow effect
+ * Bayangan gitar untuk efek depth
+ */
+.guitar-shadow {
+  width: 700px;
+  height: auto;
+  position: absolute;
+  bottom: -60px;
+  right: 70px;
+  opacity: 0.7;
+}
+
+/* 
+ * Background shadow/gradient
+ * Shadow background untuk efek visual
+ */
+.shadow-bg {
+  position: absolute;
+  bottom: 0;
+  right: -50px;
+  width: 1000px;
+  height: auto;
+  rotate: -5deg;
+  opacity: 0.9;
+}
+
+/* ========================================
+   TENTANG KAMI SECTION
+   Section yang menampilkan informasi tentang toko
+======================================== */
+
+/* 
+ * Main section tentang kami
+ * Container utama dengan padding yang cukup
+ */
+.tentang-kami {
+  background-color: #fff;
+  padding: 100px 0;
+  margin-top: 50px;
+}
+
+/* 
+ * Heading tentang kami
+ * Judul section dengan text align center
+ */
+.tentang-kami h2 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #000;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* 
+ * Container untuk konten tentang
+ * Flex layout untuk logo dan teks secara horizontal
+ */
+.container-tentang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  width: 85%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* 
+ * Logo/gambar tentang kami
+ * Logo toko dengan ukuran yang sesuai
+ */
+.logo-tentang img {
+  width: 500px;
+  height: auto;
+}
+
+/* 
+ * Text content tentang kami
+ * Bagian teks dengan flex: 1 untuk mengambil sisa ruang
+ */
+.text-tentang {
+  flex: 1;
+}
+
+/* 
+ * Paragraph text tentang kami
+ * Styling untuk setiap paragraf dengan spacing yang cukup
+ */
+.text-tentang p {
+  font-size: 18px;
+  line-height: 1.9;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* ========================================
+   RESPONSIVE - HERO & TENTANG KAMI
+   Media queries untuk tablet dan mobile
+======================================== */
+
+/* Tablet (769px - 1024px) */
+@media (max-width: 1024px) {
+
+  /* Hero responsive */
+  .hero-content .text {
+    padding-left: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 48px;
+  }
+
+  .hero-content h5 {
+    font-size: 20px;
+  }
+
+  /* Gambar gitar menyesuaikan ukuran */
+  .hero-bg {
+    right: -50px;
+    top: 170px;
+  }
+
+  .guitar-img {
+    width: 600px;
+  }
+
+  .guitar-shadow {
+    width: 500px;
+    right: 20px;
+  }
+
+  .shadow-bg {
+    width: 700px;
+  }
+
+  /* Tentang kami responsive */
+  .container-tentang {
+    gap: 50px;
+  }
+
+  .logo-tentang img {
+    width: 350px;
+  }
+
+  .text-tentang p {
+    font-size: 16px;
+  }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+
+  /* Hero mobile */
+  .hero-content {
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+
+  .container-section {
+    width: 90%;
+  }
+
+  /* Teks hero center di mobile */
+  .hero-content .text {
+    padding-left: 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-content h5 {
+    font-size: 18px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+    max-width: 100%;
+    margin: 0 auto 30px;
+  }
+
+  /* Tombol vertikal di mobile */
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+    padding: 14px 32px;
+  }
+
+  /* Sembunyikan gambar gitar di mobile */
+  .hero-bg {
+    display: none;
+  }
+
+  /* Tentang kami mobile */
+  .tentang-kami {
+    padding: 60px 0;
+    margin-top: 30px;
+  }
+
+  .tentang-kami h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  /* Layout vertikal di mobile */
+  .container-tentang {
+    flex-direction: column;
+    gap: 30px;
+    width: 90%;
+  }
+
+  .logo-tentang {
+    order: 1;
+  }
+
+  .logo-tentang img {
+    width: 250px;
+  }
+
+  .text-tentang {
+    order: 2;
+  }
+
+  .text-tentang p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+}
+
+/* Small Mobile (up to 480px) */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-content h5 {
+    font-size: 16px;
+  }
+
+  .hero-content p {
+    font-size: 13px;
+  }
+
+  .logo-tentang img {
+    width: 200px;
+  }
+
+  .text-tentang p {
+    font-size: 13px;
+  }
+}

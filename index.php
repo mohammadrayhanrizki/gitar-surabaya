@@ -11,8 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <!-- Memuat stylesheet utama -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Memuat stylesheet global dan komponen -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Memuat stylesheet khusus untuk halaman index -->
+    <link rel="stylesheet" href="css/index.css">
 
 
 </head>
