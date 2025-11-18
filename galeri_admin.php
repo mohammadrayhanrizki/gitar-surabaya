@@ -8,6 +8,16 @@ if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
   exit;
 }
 
+// --- LOAD LIBRARY PUSHER (AMAN) ---
+require __DIR__ . '/vendor/autoload.php';
+$options = array('cluster' => 'ap1', 'useTLS' => true);
+
+try {
+  $pusher = new Pusher\Pusher('122fe5dc53b428646f8b', '0be57d1316e4c58ef72c', '2079485', $options);
+} catch (Exception $e) {
+  $pusher = null;
+}
+
 // --- LOGIKA 1: TAMBAH FOTO ---
 if (isset($_POST['upload'])) {
   $judul = mysqli_real_escape_string($conn, $_POST['judul']);
@@ -18,16 +28,10 @@ if (isset($_POST['upload'])) {
   $fotobaru = date('dmYHis') . $foto; // Rename unik
   $path = "images/gallery/" . $fotobaru;
 
-  // Buat folder jika belum ada
-  if (!file_exists('images/gallery')) {
-    mkdir('images/gallery', 0777, true);
-  }
-
   if (move_uploaded_file($tmp, $path)) {
     $query = mysqli_query($conn, "INSERT INTO galeri (judul, gambar) VALUES ('$judul', '$fotobaru')");
 
     if ($query) {
-      // Log Aktivitas
       $log = "Admin mengupload foto galeri: $judul";
       mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log')");
 
@@ -56,9 +60,6 @@ if (isset($_GET['hapus'])) {
   $hapus = mysqli_query($conn, "DELETE FROM galeri WHERE id='$id'");
 
   if ($hapus) {
-    $log = "Admin menghapus foto galeri: " . $data['judul'];
-    mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log')");
-
     $_SESSION['notif_type'] = 'success';
     $_SESSION['notif_msg'] = 'Foto berhasil dihapus.';
   }
@@ -79,7 +80,6 @@ if (isset($_GET['hapus'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   <style>
     * {
       margin: 0;
@@ -93,7 +93,6 @@ if (isset($_GET['hapus'])) {
       background-color: #F5F6FA;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 250px;
       height: 100vh;
@@ -101,7 +100,6 @@ if (isset($_GET['hapus'])) {
       padding: 30px;
       position: fixed;
       border-right: 1px solid #eee;
-      z-index: 1000;
     }
 
     .sidebar h2 {
@@ -133,15 +131,10 @@ if (isset($_GET['hapus'])) {
       color: #E53935 !important;
     }
 
-    .logout:hover {
-      background-color: #FFEBEE !important;
-    }
-
-    /* Content */
     .main-content {
       margin-left: 250px;
       padding: 40px;
-      width: calc(100% - 250px);
+      width: 100%;
     }
 
     .header-title {
@@ -151,7 +144,7 @@ if (isset($_GET['hapus'])) {
       color: #222;
     }
 
-    /* Upload Box Style */
+    /* Upload Box Modern */
     .upload-box {
       background: #fff;
       padding: 40px;
@@ -187,25 +180,6 @@ if (isset($_GET['hapus'])) {
       flex-direction: column;
       align-items: center;
       gap: 10px;
-    }
-
-    /* Elemen Tersembunyi (Muncul via JS) */
-    #extraFields {
-      display: none;
-      margin-bottom: 40px;
-      animation: fadeIn 0.5s;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .input-judul {
@@ -297,18 +271,36 @@ if (isset($_GET['hapus'])) {
       color: #fff;
       transform: scale(1.1);
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .input-judul {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .btn-upload {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
 <body>
 
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="mobile-header">
+    <h2>Dashboard</h2>
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  </div>
+
   <div class="sidebar">
     <h2>Dashboard</h2>
     <div class="menu">
-      <a href="dashboard.php">Dashboard</a>
-      <a href="produk.php">Manajemen Produk</a>
-      <a href="pesanan.php">Pesanan</a>
-      <a href="galeri_admin.php" class="active">Galeri</a>
+      <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="produk.php"><i class="fas fa-box"></i> Manajemen Produk</a>
+      <a href="pesanan.php"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+      <a href="galeri_admin.php" class="active"><i class="fas fa-images"></i> Galeri</a>
       <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
     </div>
   </div>
@@ -355,6 +347,8 @@ if (isset($_GET['hapus'])) {
     </div>
   </div>
 
+  <script src="includes/admin_script.js"></script>
+
   <script>
     const fileInput = document.getElementById('fileInput');
     const extraFields = document.getElementById('extraFields');
@@ -365,30 +359,19 @@ if (isset($_GET['hapus'])) {
     // Logic: Tampilkan input judul setelah file dipilih
     fileInput.addEventListener('change', function () {
       if (this.files && this.files[0]) {
-        // Ubah tampilan box
-        labelText.textContent = "File Siap: " + this.files[0].name;
+        labelText.textContent = "Siap Upload: " + this.files[0].name;
         labelText.style.color = "#2E7D32";
         labelIcon.className = "fas fa-check-circle";
         labelIcon.style.color = "#2E7D32";
-
-        // Munculkan tombol upload
-        extraFields.style.display = "block";
-
-        // Auto focus ke judul
-        inputJudul.focus();
       }
     });
 
     // SweetAlert Hapus
     function confirmDelete(id) {
       Swal.fire({
-        title: 'Hapus Foto?',
-        text: "Foto akan hilang permanen!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Ya, Hapus!'
+        title: 'Hapus Foto?', text: "Foto akan hilang permanen!", icon: 'warning',
+        showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'
       }).then((result) => {
         if (result.isConfirmed) {
           window.location.href = `galeri_admin.php?hapus=${id}`;
