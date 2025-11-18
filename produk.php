@@ -413,12 +413,10 @@ if (isset($_GET['hapus'])) {
             <select name="kategori" class="form-control" required>
               <option value="">-- Pilih Merk --</option>
               <option value="Yamaha">Yamaha</option>
-              <option value="Fender">Fender</option>
               <option value="Bromo">Bromo</option>
               <option value="Cort">Cort</option>
-              <option value="Taylor">Taylor</option>
               <option value="Ibanez">Ibanez</option>
-              <option value="Aksesoris">Aksesoris</option>
+              <option value="Aksesoris">Senar Gitar</option>
               <option value="Lainnya">Lainnya</option>
             </select>
           </div>

@@ -2,37 +2,51 @@
 session_start();
 include 'koneksi.php';
 
+// Cek Login
 if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
   header("Location: login.php");
   exit;
 }
 
-// --- TAMBAH FOTO ---
+// --- LOGIKA 1: TAMBAH FOTO ---
 if (isset($_POST['upload'])) {
   $judul = mysqli_real_escape_string($conn, $_POST['judul']);
+
+  // Upload Gambar
   $foto = $_FILES['gambar']['name'];
   $tmp = $_FILES['gambar']['tmp_name'];
-  $fotobaru = date('dmYHis') . $foto;
+  $fotobaru = date('dmYHis') . $foto; // Rename unik
   $path = "images/gallery/" . $fotobaru;
+
+  // Buat folder jika belum ada
+  if (!file_exists('images/gallery')) {
+    mkdir('images/gallery', 0777, true);
+  }
 
   if (move_uploaded_file($tmp, $path)) {
     $query = mysqli_query($conn, "INSERT INTO galeri (judul, gambar) VALUES ('$judul', '$fotobaru')");
 
     if ($query) {
+      // Log Aktivitas
       $log = "Admin mengupload foto galeri: $judul";
       mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log')");
 
       $_SESSION['notif_type'] = 'success';
       $_SESSION['notif_msg'] = 'Foto berhasil diupload!';
     }
+  } else {
+    $_SESSION['notif_type'] = 'error';
+    $_SESSION['notif_msg'] = 'Gagal mengupload gambar.';
   }
   header("Location: galeri_admin.php");
   exit;
 }
 
-// --- HAPUS FOTO ---
+// --- LOGIKA 2: HAPUS FOTO ---
 if (isset($_GET['hapus'])) {
   $id = $_GET['hapus'];
+
+  // Ambil data lama untuk hapus file fisik
   $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM galeri WHERE id='$id'"));
 
   if (file_exists("images/gallery/" . $data['gambar'])) {
@@ -42,6 +56,9 @@ if (isset($_GET['hapus'])) {
   $hapus = mysqli_query($conn, "DELETE FROM galeri WHERE id='$id'");
 
   if ($hapus) {
+    $log = "Admin menghapus foto galeri: " . $data['judul'];
+    mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log')");
+
     $_SESSION['notif_type'] = 'success';
     $_SESSION['notif_msg'] = 'Foto berhasil dihapus.';
   }
@@ -57,9 +74,12 @@ if (isset($_GET['hapus'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kelola Galeri</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <style>
     * {
       margin: 0;
@@ -73,6 +93,7 @@ if (isset($_GET['hapus'])) {
       background-color: #F5F6FA;
     }
 
+    /* Sidebar */
     .sidebar {
       width: 250px;
       height: 100vh;
@@ -80,6 +101,7 @@ if (isset($_GET['hapus'])) {
       padding: 30px;
       position: fixed;
       border-right: 1px solid #eee;
+      z-index: 1000;
     }
 
     .sidebar h2 {
@@ -111,10 +133,15 @@ if (isset($_GET['hapus'])) {
       color: #E53935 !important;
     }
 
+    .logout:hover {
+      background-color: #FFEBEE !important;
+    }
+
+    /* Content */
     .main-content {
       margin-left: 250px;
       padding: 40px;
-      width: 100%;
+      width: calc(100% - 250px);
     }
 
     .header-title {
@@ -124,14 +151,14 @@ if (isset($_GET['hapus'])) {
       color: #222;
     }
 
-    /* Upload Box Modern */
+    /* Upload Box Style */
     .upload-box {
       background: #fff;
       padding: 40px;
       border-radius: 16px;
       text-align: center;
       border: 2px dashed #ccc;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       position: relative;
       cursor: pointer;
       transition: 0.3s;
@@ -162,15 +189,33 @@ if (isset($_GET['hapus'])) {
       gap: 10px;
     }
 
+    /* Elemen Tersembunyi (Muncul via JS) */
+    #extraFields {
+      display: none;
+      margin-bottom: 40px;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .input-judul {
-      width: 100%;
+      width: 70%;
       padding: 12px;
-      margin-top: 20px;
       border: 1px solid #ddd;
       border-radius: 8px;
-      display: none;
       outline: none;
       transition: 0.3s;
+      margin-right: 10px;
     }
 
     .input-judul:focus {
@@ -183,10 +228,8 @@ if (isset($_GET['hapus'])) {
       padding: 12px 25px;
       border: none;
       border-radius: 8px;
-      margin-top: 15px;
       cursor: pointer;
       font-weight: 600;
-      display: none;
       transition: 0.3s;
     }
 
@@ -244,6 +287,8 @@ if (isset($_GET['hapus'])) {
       text-decoration: none;
       font-size: 14px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      border: none;
+      cursor: pointer;
       transition: 0.2s;
     }
 
@@ -269,54 +314,72 @@ if (isset($_GET['hapus'])) {
   </div>
 
   <div class="main-content">
-    <div class="header-title">Galeri</div>
+    <div class="header-title">Kelola Galeri</div>
 
     <form method="POST" enctype="multipart/form-data">
       <div class="upload-box" id="dropZone">
         <div class="upload-label">
           <i class="fas fa-image" style="font-size:32px; color:#ccc;"></i>
-          <span>+ Klik untuk Upload Image</span>
+          <span>+ Klik untuk Pilih Foto</span>
         </div>
-        <input type="file" name="gambar" id="fileInput" required>
+        <input type="file" name="gambar" id="fileInput" accept="image/*" required>
       </div>
 
-      <div id="extraFields" style="display:block; margin-bottom:40px;">
-        <input type="text" name="judul" class="input-judul" style="display:inline-block; width:70%; margin-right:10px;"
-          placeholder="Masukkan Judul/Caption Foto..." required>
-        <button type="submit" name="upload" class="btn-upload" style="display:inline-block;">Upload Sekarang</button>
+      <div id="extraFields">
+        <input type="text" name="judul" class="input-judul" placeholder="Masukkan Judul / Caption Foto..." required>
+        <button type="submit" name="upload" class="btn-upload"><i class="fas fa-cloud-upload-alt"></i> Upload</button>
       </div>
     </form>
 
     <div class="header-title" style="font-size: 20px; margin-top:40px;">Foto Terupload</div>
+
     <div class="gallery-grid">
       <?php
       $result = mysqli_query($conn, "SELECT * FROM galeri ORDER BY id DESC");
-      while ($row = mysqli_fetch_assoc($result)):
+      if (mysqli_num_rows($result) > 0):
+        while ($row = mysqli_fetch_assoc($result)):
+          ?>
+          <div class="gallery-card">
+            <img src="images/gallery/<?= $row['gambar']; ?>" class="gallery-img">
+            <div class="gallery-caption"><?= $row['judul']; ?></div>
+            <a href="#" onclick="confirmDelete(<?= $row['id']; ?>)" class="btn-delete" title="Hapus Foto">
+              <i class="fas fa-trash"></i>
+            </a>
+          </div>
+        <?php
+        endwhile;
+      else:
         ?>
-        <div class="gallery-card">
-          <img src="images/gallery/<?= $row['gambar']; ?>" class="gallery-img">
-          <div class="gallery-caption"><?= $row['judul']; ?></div>
-          <button onclick="confirmDelete(<?= $row['id']; ?>)" class="btn-delete" title="Hapus Foto"><i
-              class="fas fa-trash"></i></button>
-        </div>
-      <?php endwhile; ?>
+        <p style="color:#999; grid-column: 1/-1; text-align:center;">Belum ada foto di galeri.</p>
+      <?php endif; ?>
     </div>
   </div>
 
   <script>
     const fileInput = document.getElementById('fileInput');
+    const extraFields = document.getElementById('extraFields');
     const labelText = document.querySelector('.upload-label span');
     const labelIcon = document.querySelector('.upload-label i');
+    const inputJudul = document.querySelector('.input-judul');
 
+    // Logic: Tampilkan input judul setelah file dipilih
     fileInput.addEventListener('change', function () {
       if (this.files && this.files[0]) {
-        labelText.textContent = "Siap Upload: " + this.files[0].name;
+        // Ubah tampilan box
+        labelText.textContent = "File Siap: " + this.files[0].name;
         labelText.style.color = "#2E7D32";
         labelIcon.className = "fas fa-check-circle";
         labelIcon.style.color = "#2E7D32";
+
+        // Munculkan tombol upload
+        extraFields.style.display = "block";
+
+        // Auto focus ke judul
+        inputJudul.focus();
       }
     });
 
+    // SweetAlert Hapus
     function confirmDelete(id) {
       Swal.fire({
         title: 'Hapus Foto?',
@@ -333,6 +396,7 @@ if (isset($_GET['hapus'])) {
       })
     }
 
+    // SweetAlert Notifikasi
     <?php if (isset($_SESSION['notif_type'])): ?>
       Swal.fire({
         icon: '<?= $_SESSION['notif_type']; ?>',
