@@ -27,140 +27,28 @@ $log_query = mysqli_query($conn, "SELECT * FROM riwayat_aktivitas ORDER BY tangg
   <title>Dashboard Admin - Gitar Surabaya</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* CSS Sederhana Sesuai Layout Desain */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      display: flex;
-      background-color: #F5F6FA;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      height: 100vh;
-      background: #fff;
-      padding: 30px;
-      position: fixed;
-      border-right: 1px solid #eee;
-    }
-
-    .sidebar h2 {
-      margin-bottom: 40px;
-      font-weight: 700;
-    }
-
-    .menu a {
-      display: block;
-      padding: 12px 15px;
-      color: #333;
-      text-decoration: none;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    .menu a:hover,
-    .menu a.active {
-      background-color: #eee;
-      font-weight: 600;
-    }
-
-    .logout-2 a {
-      margin-top: 50px;
-      color: #E53935;
-    }
-
-
-    /* Main Content */
-    .main-content {
-      margin-left: 250px;
-      padding: 40px;
-      width: 100%;
-    }
-
-    .header-title {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 30px;
-    }
-
-    /* Cards Statistik */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    .card {
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-    }
-
-    .card h3 {
-      color: #777;
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    .card .number {
-      font-size: 48px;
-      font-weight: 700;
-      margin-top: 10px;
-    }
-
-    /* Tabel Riwayat */
-    .history-section {
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-    }
-
-    .history-section h3 {
-      margin-bottom: 20px;
-      font-size: 18px;
-    }
-
-    .log-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 15px;
-      background: #F4F4F4;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-
-    .log-time {
-      color: #888;
-    }
-  </style>
+  <link rel="stylesheet" href="css/admin.css">
 </head>
 
 <body>
 
-  <div class="sidebar">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="mobile-header">
     <h2>Dashboard</h2>
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <div class="sidebar">
+    <h2>Dashboard.</h2>
     <div class="menu">
-      <a href="dashboard.php" class="active">Dashboard</a>
-      <a href="produk.php">Manajemen Produk</a>
-      <a href="pesanan.php">Pesanan</a>
-      <a href="galeri_admin.php">Galeri</a>
-      <div class="logout-2">
-        <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
-      </div>
+      <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="produk.php"><i class="fas fa-box"></i> Manajemen Produk</a>
+      <a href="pesanan.php"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+      <a href="galeri_admin.php"><i class="fas fa-images"></i> Galeri</a>
+      <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
     </div>
   </div>
 
@@ -196,5 +84,6 @@ $log_query = mysqli_query($conn, "SELECT * FROM riwayat_aktivitas ORDER BY tangg
   </div>
 
 </body>
+<script src="includes/admin_script.js"></script>
 
 </html>
