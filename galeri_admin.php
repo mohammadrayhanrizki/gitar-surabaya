@@ -18,20 +18,27 @@ try {
   $pusher = null;
 }
 
-// --- LOGIKA 1: TAMBAH FOTO ---
+// --- TAMBAH FOTO ---
 if (isset($_POST['upload'])) {
   $judul = mysqli_real_escape_string($conn, $_POST['judul']);
-
-  // Upload Gambar
   $foto = $_FILES['gambar']['name'];
   $tmp = $_FILES['gambar']['tmp_name'];
-  $fotobaru = date('dmYHis') . $foto; // Rename unik
+  $fotobaru = date('dmYHis') . $foto;
   $path = "images/gallery/" . $fotobaru;
+
+  if (!file_exists('images/gallery')) {
+    mkdir('images/gallery', 0777, true);
+  }
 
   if (move_uploaded_file($tmp, $path)) {
     $query = mysqli_query($conn, "INSERT INTO galeri (judul, gambar) VALUES ('$judul', '$fotobaru')");
 
     if ($query) {
+      // Trigger Pusher
+      if ($pusher) {
+        $pusher->trigger('gallery-channel', 'update-gallery', ['message' => 'Galeri baru']);
+      }
+
       $log = "Admin mengupload foto galeri: $judul";
       mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log')");
 
@@ -46,11 +53,9 @@ if (isset($_POST['upload'])) {
   exit;
 }
 
-// --- LOGIKA 2: HAPUS FOTO ---
+// --- HAPUS FOTO ---
 if (isset($_GET['hapus'])) {
   $id = $_GET['hapus'];
-
-  // Ambil data lama untuk hapus file fisik
   $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM galeri WHERE id='$id'"));
 
   if (file_exists("images/gallery/" . $data['gambar'])) {
@@ -60,6 +65,14 @@ if (isset($_GET['hapus'])) {
   $hapus = mysqli_query($conn, "DELETE FROM galeri WHERE id='$id'");
 
   if ($hapus) {
+    // Trigger Pusher
+    if ($pusher) {
+      $pusher->trigger('gallery-channel', 'update-gallery', ['message' => 'Galeri dihapus']);
+    }
+
+    $log = "Admin menghapus foto galeri: " . $data['judul'];
+    mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log')");
+
     $_SESSION['notif_type'] = 'success';
     $_SESSION['notif_msg'] = 'Foto berhasil dihapus.';
   }
@@ -80,71 +93,11 @@ if (isset($_GET['hapus'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <link rel="stylesheet" href="css/admin.css">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      display: flex;
-      background-color: #F5F6FA;
-    }
-
-    .sidebar {
-      width: 250px;
-      height: 100vh;
-      background: #fff;
-      padding: 30px;
-      position: fixed;
-      border-right: 1px solid #eee;
-    }
-
-    .sidebar h2 {
-      margin-bottom: 40px;
-      font-weight: 700;
-      color: #333;
-    }
-
-    .menu a {
-      display: block;
-      padding: 12px 15px;
-      color: #555;
-      text-decoration: none;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    .menu a:hover,
-    .menu a.active {
-      background-color: #F5F6FA;
-      color: #000;
-      font-weight: 600;
-    }
-
-    .logout {
-      margin-top: 50px;
-      color: #E53935 !important;
-    }
-
-    .main-content {
-      margin-left: 250px;
-      padding: 40px;
-      width: 100%;
-    }
-
-    .header-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 30px;
-      color: #222;
-    }
-
-    /* Upload Box Modern */
+    /* CSS Khusus untuk Upload Box Galeri (Bisa dipindah ke admin.css jika mau) */
     .upload-box {
       background: #fff;
       padding: 40px;
@@ -180,6 +133,24 @@ if (isset($_GET['hapus'])) {
       flex-direction: column;
       align-items: center;
       gap: 10px;
+    }
+
+    #extraFields {
+      display: none;
+      margin-bottom: 40px;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .input-judul {
@@ -356,17 +327,17 @@ if (isset($_GET['hapus'])) {
     const labelIcon = document.querySelector('.upload-label i');
     const inputJudul = document.querySelector('.input-judul');
 
-    // Logic: Tampilkan input judul setelah file dipilih
     fileInput.addEventListener('change', function () {
       if (this.files && this.files[0]) {
-        labelText.textContent = "Siap Upload: " + this.files[0].name;
+        labelText.textContent = "File Siap: " + this.files[0].name;
         labelText.style.color = "#2E7D32";
         labelIcon.className = "fas fa-check-circle";
         labelIcon.style.color = "#2E7D32";
+        extraFields.style.display = "block";
+        inputJudul.focus();
       }
     });
 
-    // SweetAlert Hapus
     function confirmDelete(id) {
       Swal.fire({
         title: 'Hapus Foto?', text: "Foto akan hilang permanen!", icon: 'warning',
@@ -379,7 +350,6 @@ if (isset($_GET['hapus'])) {
       })
     }
 
-    // SweetAlert Notifikasi
     <?php if (isset($_SESSION['notif_type'])): ?>
       Swal.fire({
         icon: '<?= $_SESSION['notif_type']; ?>',
