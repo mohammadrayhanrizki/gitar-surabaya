@@ -173,7 +173,7 @@ include 'koneksi.php'; // 1. Panggil koneksi database
                                 + Keranjang
                             </button>
                         </div>
-                    <?php
+                        <?php
                     } // End While
                 } else {
                     echo "<p style='padding:20px; text-align:center; width:100%;'>Belum ada produk yang diupload.</p>";
@@ -234,7 +234,7 @@ include 'koneksi.php'; // 1. Panggil koneksi database
                                         + Keranjang
                                     </button>
                                 </div>
-                            <?php
+                                <?php
                             }
                         } else {
                             echo "<p style='padding:10px;'>Produk Yamaha belum tersedia.</p>";
@@ -297,7 +297,7 @@ include 'koneksi.php'; // 1. Panggil koneksi database
                                         + Keranjang
                                     </button>
                                 </div>
-                            <?php
+                                <?php
                             }
                         } else {
                             echo "<p style='padding:10px;'>Produk Fender belum tersedia.</p>";
@@ -359,7 +359,7 @@ include 'koneksi.php'; // 1. Panggil koneksi database
                                         + Keranjang
                                     </button>
                                 </div>
-                            <?php
+                                <?php
                             }
                         } else {
                             echo "<p style='padding:10px;'>Produk Bromo belum tersedia.</p>";

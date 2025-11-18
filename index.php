@@ -59,7 +59,7 @@
             <div class="logo-tentang" data-animate="slide-left">
                 <img src="./images/logogitarsby2.png" alt="Logo Gitar Surabaya">
             </div>
-            <div class="text-tentang" >
+            <div class="text-tentang">
                 <p data-animate="slide-right" data-delay="100">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Eos aut ullam cumque culpa! Doloremque
                     similique quod, ipsam nemo reiciendis earum nulla ex placeat distinctio nihil aliquid in nostrum

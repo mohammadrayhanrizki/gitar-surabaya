@@ -3,6 +3,11 @@ session_start();
 include 'koneksi.php';
 
 // Cek Login (Nanti diaktifkan setelah buat login.php)
+// Cek Login (SUDAH AKTIF)
+if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
+  echo '<script>window.location="login.php"</script>';
+  exit;
+}
 // if (!isset($_SESSION['login'])) { header("Location: login.php"); exit; }
 
 // --- LOGIC 1: Ambil Data Statistik ---
@@ -20,6 +25,7 @@ $log_query = mysqli_query($conn, "SELECT * FROM riwayat_aktivitas ORDER BY tangg
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Admin - Gitar Surabaya</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* CSS Sederhana Sesuai Layout Desain */
@@ -67,10 +73,11 @@ $log_query = mysqli_query($conn, "SELECT * FROM riwayat_aktivitas ORDER BY tangg
       font-weight: 600;
     }
 
-    .logout {
+    .logout-2 a {
       margin-top: 50px;
       color: #E53935;
     }
+
 
     /* Main Content */
     .main-content {
@@ -151,7 +158,9 @@ $log_query = mysqli_query($conn, "SELECT * FROM riwayat_aktivitas ORDER BY tangg
       <a href="produk.php">Manajemen Produk</a>
       <a href="pesanan.php">Pesanan</a>
       <a href="galeri_admin.php">Galeri</a>
-      <a href="logout.php" class="logout">Keluar</a>
+      <div class="logout-2">
+        <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+      </div>
     </div>
   </div>
 
