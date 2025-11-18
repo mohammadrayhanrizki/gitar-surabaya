@@ -252,7 +252,7 @@ if (isset($_POST['update'])) {
 <body>
 
   <div class="sidebar">
-    <h2>Dashboard.</h2>
+    <h2>Dashboard</h2>
     <div class="menu">
       <a href="dashboard.php">Dashboard</a>
       <a href="produk.php">Manajemen Produk</a>

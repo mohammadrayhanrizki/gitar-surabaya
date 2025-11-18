@@ -152,7 +152,7 @@ $log_query = mysqli_query($conn, "SELECT * FROM riwayat_aktivitas ORDER BY tangg
 <body>
 
   <div class="sidebar">
-    <h2>Dashboard.</h2>
+    <h2>Dashboard</h2>
     <div class="menu">
       <a href="dashboard.php" class="active">Dashboard</a>
       <a href="produk.php">Manajemen Produk</a>
