@@ -1,18 +1,11 @@
 /* ========================================
-   MARKETPLACE.CSS
-   File CSS khusus untuk halaman marketplace.php
-   Berisi: Navbar Marketplace, Banner, Product Sections, dan Brand Sections
+   MARKETPLACE.CSS - FINAL VERSION
+   Berisi: Navbar, Banner (Responsive), Product Sections, Brand Sections, dan Cart Modal
 ======================================== */
 
-/* ========================================
-   MARKETPLACE - NAVBAR
-   Navbar khusus untuk halaman marketplace dengan search bar
-======================================== */
-
-/* 
- * Main navbar marketplace - sticky positioning
- * Navbar tetap di atas saat scroll dengan background semi-transparent
- */
+/* ----------------------------------------
+   1. NAVBAR MARKETPLACE
+---------------------------------------- */
 .navbar-marketplace {
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid #eee;
@@ -23,19 +16,11 @@
   transition: all 0.3s ease;
 }
 
-/* 
- * Styling navbar marketplace saat di-scroll
- * Background menjadi lebih solid dengan shadow yang lebih jelas
- */
 .navbar-marketplace.scrolled {
   background-color: rgba(255, 255, 255, 0.98);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* 
- * Navbar container - flex layout untuk logo, search, menu
- * Container dengan padding yang cukup dan max-width untuk centering
- */
 .navbar-container {
   display: flex;
   align-items: center;
@@ -45,20 +30,13 @@
   margin: 0 auto;
 }
 
-/* 
- * Logo marketplace
- * Logo dengan ukuran yang sesuai dan transition untuk smooth effect
- */
 .logo-marketplace img {
   height: 70px;
   width: auto;
   transition: height 0.3s ease;
 }
 
-/* 
- * Hamburger menu marketplace - disembunyikan di desktop
- * Hanya muncul di mobile untuk toggle menu
- */
+/* Hamburger Menu */
 .hamburger-marketplace {
   display: none;
   flex-direction: column;
@@ -69,10 +47,6 @@
   z-index: 1001;
 }
 
-/* 
- * Garis hamburger marketplace
- * Tiga garis horizontal yang akan berubah menjadi X saat active
- */
 .hamburger-marketplace span {
   width: 25px;
   height: 3px;
@@ -82,10 +56,6 @@
   border-radius: 3px;
 }
 
-/* 
- * Transformasi hamburger marketplace saat active
- * Garis pertama dan ketiga berotasi membentuk X
- */
 .hamburger-marketplace.active span:nth-child(1) {
   transform: rotate(45deg) translate(8px, 8px);
 }
@@ -98,10 +68,7 @@
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* 
- * Search bar marketplace
- * Search bar dengan flex: 1 untuk mengambil sisa ruang
- */
+/* Search Bar */
 .search-bar-marketplace {
   flex: 1;
   max-width: 550px;
@@ -109,10 +76,6 @@
   margin: 0 40px;
 }
 
-/* 
- * Icon search
- * Icon search di dalam input dengan positioning absolute
- */
 .search-icon {
   position: absolute;
   left: 16px;
@@ -122,10 +85,6 @@
   pointer-events: none;
 }
 
-/* 
- * Input search bar
- * Input dengan border radius untuk rounded corners
- */
 .search-bar-marketplace input {
   width: 100%;
   padding: 12px 20px 12px 46px;
@@ -138,30 +97,19 @@
   transition: all 0.3s ease;
 }
 
-/* 
- * Focus state search bar
- * Border dan shadow berubah saat input di-focus
- */
 .search-bar-marketplace input:focus {
   border-color: #E53935;
   box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
   background: #fff;
 }
 
-/* 
- * Navigation right section (Beranda, Kontak, Cart)
- * Container untuk link navigasi dan cart icon
- */
+/* Navigation Links */
 .nav-right-marketplace {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-/* 
- * Navigation links
- * Link navigasi dengan hover effect
- */
 .nav-right-marketplace a {
   text-decoration: none;
   color: #333;
@@ -171,28 +119,18 @@
   position: relative;
 }
 
-/* 
- * Hover effect nav links
- * Warna berubah menjadi merah saat hover (kecuali cart link)
- */
 .nav-right-marketplace a:not(.cart-link):hover {
   color: #E53935;
 }
 
-/* 
- * Cart link styling
- * Link cart dengan icon SVG dan badge notification
- */
+/* Cart Link */
 .cart-link {
   position: relative;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
-/* 
- * SVG cart icon
- * Icon cart dengan transition untuk smooth hover effect
- */
 .cart-link svg {
   width: 24px;
   height: 24px;
@@ -204,10 +142,6 @@
   color: #E53935;
 }
 
-/* 
- * Cart badge/notification
- * Badge merah untuk menampilkan jumlah item di cart
- */
 .cart-badge {
   position: absolute;
   top: -8px;
@@ -222,77 +156,109 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* ========================================
-   MARKETPLACE - BANNER
-   Banner slider di bagian atas marketplace
-======================================== */
+.cart-badge.pop {
+  transform: scale(1.2);
+}
 
-/* 
- * Main banner marketplace
- * Container banner dengan margin dan border radius
- */
+
+/* ----------------------------------------
+   2. BANNER MARKETPLACE (Dynamic & Responsive)
+---------------------------------------- */
 .banner-marketplace {
   position: relative;
   margin: 40px 80px;
   border-radius: 16px;
   overflow: hidden;
+  width: calc(100% - 160px);
+  /* Full width - margin */
+  aspect-ratio: 3 / 1;
+  /* Rasio 3:1 (Wide) */
+  background: #eee;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  touch-action: pan-y;
+  /* Support Swipe */
+  user-select: none;
 }
 
-/* 
- * Banner placeholder - gradient background
- * Placeholder untuk banner dengan background abu-abu
- */
-.banner-placeholder {
+.banner-wrapper {
   width: 100%;
-  height: 350px;
-  background: #D9D9D9;
+  height: 100%;
+  position: relative;
+}
+
+.banner-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1;
 }
 
-/* 
- * Banner content text
- * Konten teks di dalam banner dengan text align center
- */
+.banner-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  /* Gelap Transparan */
+  z-index: 3;
+}
+
 .banner-content {
   text-align: center;
   color: #fff;
+  position: relative;
+  z-index: 4;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  padding: 0 20px;
+  pointer-events: none;
 }
 
 .banner-content h2 {
-  font-size: 48px;
+  font-size: clamp(24px, 4vw, 48px);
   font-weight: 800;
   margin-bottom: 10px;
 }
 
 .banner-content p {
-  font-size: 20px;
+  font-size: clamp(14px, 2vw, 20px);
   font-weight: 500;
 }
 
-/* 
- * Arrow button untuk navigasi banner
- * Tombol panah untuk navigasi slider banner
- */
+/* Banner Controls */
 .banner-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  z-index: 10;
+  z-index: 20;
 }
 
 .banner-arrow:hover {
@@ -314,10 +280,6 @@
   color: #333;
 }
 
-/* 
- * Dots indicator untuk banner slider
- * Indikator dots di bawah banner untuk menunjukkan slide aktif
- */
 .banner-dots {
   position: absolute;
   bottom: 20px;
@@ -325,7 +287,7 @@
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
-  z-index: 10;
+  z-index: 20;
 }
 
 .banner-dots .dot {
@@ -343,10 +305,10 @@
   border-radius: 5px;
 }
 
-/* 
- * Section "Semua Produk"
- * Heading untuk section semua produk
- */
+
+/* ----------------------------------------
+   3. PRODUCT SECTIONS
+---------------------------------------- */
 .semua-produk {
   text-align: center;
   padding-top: 40px;
@@ -358,15 +320,6 @@
   color: #333;
 }
 
-/* ========================================
-   MARKETPLACE - PRODUCT SECTION
-   Section untuk menampilkan produk dengan horizontal scroll
-======================================== */
-
-/* 
- * Main product section
- * Container untuk section produk dengan background abu-abu
- */
 .product-section-marketplace {
   margin: 30px auto;
   max-width: 1600px;
@@ -374,10 +327,6 @@
   background-color: #D9D9D9;
 }
 
-/* 
- * Section heading
- * Judul section produk dengan text align center
- */
 .product-section-marketplace h2 {
   font-size: 28px;
   font-weight: 700;
@@ -386,10 +335,6 @@
   color: #333;
 }
 
-/* 
- * Product list container - horizontal scroll
- * Container dengan flex untuk mengatur scroll buttons dan product list
- */
 .scroll-container-marketplace {
   position: relative;
   display: flex;
@@ -397,10 +342,6 @@
   gap: 15px;
 }
 
-/* 
- * Scroll button untuk product
- * Tombol untuk scroll produk ke kiri atau kanan
- */
 .scroll-btn-marketplace {
   background: #fff;
   border: 1px solid #ddd;
@@ -421,21 +362,12 @@
   border-color: #E53935;
 }
 
-.scroll-btn-marketplace:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
 .scroll-btn-marketplace svg {
   width: 20px;
   height: 20px;
   color: #333;
 }
 
-/* 
- * Product list - horizontal scrolling
- * List produk dengan horizontal scroll dan smooth behavior
- */
 .product-list-marketplace {
   display: flex;
   overflow-x: auto;
@@ -444,18 +376,13 @@
   padding: 10px 0;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
-/* Sembunyikan scrollbar */
 .product-list-marketplace::-webkit-scrollbar {
   display: none;
 }
 
-/* 
- * Product card styling
- * Card untuk setiap produk dengan shadow dan border
- */
+/* Product Card */
 .product-card-marketplace {
   min-width: 240px;
   background: #fff;
@@ -467,35 +394,23 @@
   cursor: pointer;
   transition: all 0.3s ease;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
-/* 
- * Product card hover effect
- * Card naik sedikit dan shadow lebih besar saat hover
- */
 .product-card-marketplace:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
   border-color: #E53935;
 }
 
-/* 
- * Product image placeholder
- * Placeholder untuk gambar produk dengan shimmer effect
- */
 .product-image-placeholder {
   background: #e8e8e8;
   height: 180px;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  margin-bottom: 10px;
 }
 
-/* 
- * Shimmer effect untuk loading
- * Efek shimmer untuk loading state (didefinisikan di global.css)
- */
 .shimmer {
   position: absolute;
   top: 0;
@@ -506,78 +421,52 @@
   animation: shimmer 2s infinite;
 }
 
-/* 
- * Product info text
- * Styling untuk teks informasi produk
- */
-.product-card-marketplace p {
-  font-size: 14px;
-  margin: 8px 0 4px;
-}
-
-/* Nama produk dengan font weight bold */
 .product-name {
   font-weight: 600;
   color: #333;
+  font-size: 15px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Harga produk dengan warna merah */
 .product-price {
   color: #E53935;
   font-weight: 700;
   font-size: 16px;
+  margin-bottom: 8px;
 }
 
-/* 
- * Product status badge (Tersedia/Pre-order)
- * Badge untuk menampilkan status produk
- */
 .product-status {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   padding: 4px 10px;
-  border-radius: 12px;
+  border-radius: 20px;
   display: inline-block;
-  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
-/* 
- * Status tersedia - hijau
- * Badge hijau untuk produk yang tersedia
- */
 .product-status.available {
   background: #E8F5E9;
   color: #2E7D32;
 }
 
-/* 
- * Status pre-order - kuning
- * Badge kuning untuk produk pre-order
- */
 .product-status.preorder {
-  background: #FFF3E0;
-  color: #F57C00;
+  background: #FFEBEE;
+  color: #D32F2F;
 }
 
-/* ========================================
-   MARKETPLACE - BRAND SECTION
-   Section untuk menampilkan produk berdasarkan brand
-======================================== */
 
-/* 
- * Main brand section
- * Container untuk section brand dengan margin dan padding
- */
+/* ----------------------------------------
+   4. BRAND SECTIONS
+---------------------------------------- */
 .brand-section-marketplace {
   margin: 60px auto;
   max-width: 1600px;
   padding: 0 80px;
 }
 
-/* 
- * Brand container - Flex layout for Logo Left & Products Right
- * Container dengan flex layout: logo di kiri (25%), produk di kanan (75%)
- */
 .brand-container {
   display: flex;
   align-items: center;
@@ -590,22 +479,15 @@
   overflow: hidden;
 }
 
-/* 
- * Bagian Kiri: Sidebar Logo (25% Lebar)
- * Sidebar untuk logo brand dengan fixed width 25%
- */
 .brand-logo-sidebar {
   flex: 0 0 25%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-right: 30px;
 }
 
-/* 
- * Placeholder Logo
- * Logo brand dengan max-width dan object-fit contain
- */
 .brand-img-placeholder {
   width: 100%;
   max-width: 180px;
@@ -616,20 +498,12 @@
   display: block;
 }
 
-/* 
- * Bagian Kanan: Slider Produk (75% Lebar Sisa)
- * Slider produk mengambil sisa ruang (75%)
- */
 .brand-product-slider {
   flex: 1;
   width: 0;
   position: relative;
 }
 
-/* 
- * Penyesuaian Scroll Container di dalam Brand Section
- * Scroll container mengambil full width di dalam brand slider
- */
 .brand-product-slider .scroll-container-marketplace {
   width: 100%;
 }
@@ -638,20 +512,230 @@
   padding: 10px 5px;
 }
 
-/* ========================================
-   RESPONSIVE - MARKETPLACE
-   Media queries untuk tablet dan mobile
-======================================== */
+
+/* ----------------------------------------
+   5. CART MODAL STYLES
+---------------------------------------- */
+.cart-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 99999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cart-modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.cart-content {
+  background: white;
+  width: 90%;
+  max-width: 450px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.cart-modal.show .cart-content {
+  transform: translateY(0);
+}
+
+#cartItemsContainer {
+  overflow-y: auto;
+  max-height: 40vh;
+  margin-bottom: 15px;
+  padding-right: 5px;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.cart-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.close-cart {
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+  transition: 0.2s;
+}
+
+.close-cart:hover {
+  color: #E53935;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #F9F9F9;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+}
+
+.cart-item:hover {
+  border-color: #ddd;
+  background: #fff;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.item-price {
+  font-size: 13px;
+  color: #E53935;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.cart-item-remove {
+  width: 30px;
+  height: 30px;
+  background: #FFEBEE;
+  color: #E53935;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cart-item-remove:hover {
+  background: #E53935;
+  color: white;
+}
+
+.cart-summary {
+  border-top: 2px dashed #eee;
+  padding-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.total-price {
+  color: #E53935;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.buyer-form {
+  flex-shrink: 0;
+  margin-top: 10px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fcfcfc;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form-input:focus {
+  border-color: #333;
+  background: #fff;
+}
+
+#btnCheckout {
+  width: 100%;
+  padding: 14px;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  touch-action: manipulation;
+}
+
+#btnCheckout:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+}
+
+#btnCheckout:active {
+  transform: translateY(0);
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 30px 0;
+  color: #999;
+}
+
+.empty-cart i {
+  font-size: 40px;
+  margin-bottom: 10px;
+  opacity: 0.3;
+}
+
+
+/* ----------------------------------------
+   6. RESPONSIVE DESIGN (FIXED)
+---------------------------------------- */
 
 /* Tablet (769px - 1024px) */
 @media (max-width: 1024px) {
-  /* Marketplace navbar responsive */
   .navbar-container {
     padding: 20px 40px;
     flex-wrap: wrap;
   }
 
-  /* Search bar full width di tablet */
   .search-bar-marketplace {
     order: 3;
     width: 100%;
@@ -665,59 +749,29 @@
     display: block;
   }
 
-  /* Banner responsive */
   .banner-marketplace {
     margin: 30px 40px;
+    width: calc(100% - 80px);
   }
 
-  .banner-placeholder {
-    height: 260px;
-  }
-
-  .banner-content h2 {
-    font-size: 36px;
-  }
-
-  .banner-content p {
-    font-size: 18px;
-  }
-
-  /* Sembunyikan arrow di tablet */
   .banner-arrow {
     display: none;
   }
 
-  /* Product section responsive */
   .product-section-marketplace {
     margin: 30px auto;
     padding: 20px 40px;
   }
 
-  .product-section-marketplace h2 {
-    font-size: 24px;
-    text-align: center;
-  }
-
-  /* Sembunyikan scroll button di tablet */
   .scroll-btn-marketplace {
     display: none;
   }
 
-  .product-card-marketplace {
-    min-width: 200px;
-  }
-
-  .product-image-placeholder {
-    height: 150px;
-  }
-
-  /* Brand Section Stacking on Tablet */
   .brand-section-marketplace {
     margin: 40px auto;
     padding: 0 40px;
   }
 
-  /* Layout vertikal di tablet */
   .brand-container {
     flex-direction: column;
     align-items: flex-start;
@@ -726,28 +780,16 @@
   }
 
   .brand-logo-sidebar {
-    flex: none;
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #eee;
     padding-right: 0;
     padding-bottom: 20px;
-    justify-content: center;
-  }
-
-  .brand-img-placeholder {
-    max-width: 120px;
-    min-height: 60px;
-  }
-
-  .brand-product-slider {
-    width: 100%;
   }
 }
 
 /* Mobile (up to 768px) */
 @media (max-width: 768px) {
-  /* Marketplace mobile */
   .navbar-container {
     padding: 15px 20px;
     gap: 10px;
@@ -757,34 +799,27 @@
     height: 50px;
   }
 
-  /* Hamburger menu muncul di mobile */
   .hamburger-marketplace {
     display: flex;
     order: 4;
-    z-index: 1001;
-    position: relative;
   }
 
-  /* Search bar full width di mobile */
   .search-bar-marketplace {
-    flex: 1;
-    max-width: none;
     margin: 0 10px;
     order: 2;
   }
 
   .search-bar-marketplace input {
-    width: 100%;
-    font-size: 13px;
     padding: 10px 16px 10px 42px;
+    font-size: 13px;
+    width: 100%;
   }
 
-  /* Navigation right hidden di mobile */
   .nav-right-marketplace {
     display: none !important;
   }
 
-  /* Navigation right muncul saat hamburger aktif */
+  /* Mobile Menu Animation */
   .nav-right-marketplace.active {
     display: flex !important;
     position: fixed;
@@ -793,7 +828,7 @@
     width: 70%;
     max-width: 300px;
     height: 100vh;
-    background-color: #fff;
+    background: #fff;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 999;
     padding-top: 100px;
@@ -814,58 +849,34 @@
     }
   }
 
-  .nav-right-marketplace a {
-    font-size: 18px;
-  }
-
-  /* Cart link tetap terlihat */
   .cart-link {
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 1001;
     order: 3;
+    z-index: 1001;
   }
 
-  /* Banner mobile */
+  /* Banner Mobile */
   .banner-marketplace {
-    margin: 20px;
-  }
-
-  .banner-placeholder {
-    height: 220px;
+    margin: 20px auto;
+    width: calc(100% - 40px);
+    aspect-ratio: 16 / 9;
+    height: auto;
   }
 
   .banner-content h2 {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .banner-content p {
     font-size: 14px;
   }
 
-  .banner-dots .dot {
-    width: 8px;
-    height: 8px;
+  .banner-arrow {
+    display: none;
   }
 
-  .banner-dots .dot.active {
-    width: 24px;
-  }
-
-  /* Product mobile */
   .product-section-marketplace {
     margin: 30px auto;
     padding: 20px;
-  }
-
-  .product-section-marketplace h2 {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .product-list-marketplace {
-    gap: 16px;
   }
 
   .product-card-marketplace {
@@ -877,71 +888,74 @@
     height: 130px;
   }
 
-  .product-card-marketplace p {
-    font-size: 13px;
-  }
-
-  .product-price {
-    font-size: 15px;
-  }
-
-  /* Brand mobile */
+  /* === BRAND MOBILE FIX === */
   .brand-section-marketplace {
-    margin: 30px auto;
+    margin: 40px auto;
     padding: 0 20px;
   }
 
-  /* Hilangkan border di mobile agar lebih clean */
   .brand-container {
+    display: flex;
+    flex-direction: column !important;
+    /* Paksa Vertikal */
+    align-items: center;
+    gap: 20px;
+    padding: 0;
     border: none;
     box-shadow: none;
-    padding: 0;
     background: transparent;
-    gap: 10px;
+    height: auto;
+    overflow: visible;
   }
 
   .brand-logo-sidebar {
-    border-bottom: none;
-    padding-bottom: 10px;
+    width: 100%;
+    flex: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex;
     justify-content: center;
   }
 
   .brand-img-placeholder {
-    max-width: 90px;
+    max-width: 100px;
+  }
+
+  .brand-product-slider {
+    width: 100% !important;
+    flex: none;
+  }
+
+  .product-list-marketplace {
+    padding-bottom: 10px;
+  }
+
+  .scroll-btn-marketplace {
+    display: none !important;
+  }
+
+  /* Cart Modal Mobile */
+  .cart-content {
+    width: 95%;
+    padding: 20px;
+    max-height: 90vh;
   }
 }
 
-/* Small Mobile (up to 480px) */
+/* Small Mobile */
 @media (max-width: 480px) {
   .navbar-container {
     padding: 12px 15px;
   }
 
   .logo-marketplace img {
-    height: 50px;
+    height: 40px;
   }
 
   .search-bar-marketplace input {
     font-size: 12px;
-    padding: 9px 14px 9px 38px;
-  }
-
-  .search-icon {
-    width: 16px;
-    height: 16px;
-    left: 12px;
-  }
-
-  .banner-placeholder {
-    height: 180px;
-  }
-
-  .banner-content h2 {
-    font-size: 24px;
-  }
-
-  .banner-content p {
-    font-size: 13px;
+    padding: 8px 14px 8px 36px;
   }
 
   .product-card-marketplace {
@@ -952,17 +966,4 @@
   .product-image-placeholder {
     height: 120px;
   }
-
-  .product-card-marketplace p {
-    font-size: 12px;
-  }
-
-  .product-price {
-    font-size: 14px;
-  }
-
-  .brand-img-placeholder {
-    max-width: 80px;
-  }
 }
-

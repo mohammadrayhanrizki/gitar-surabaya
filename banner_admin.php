@@ -2,21 +2,39 @@
 session_start();
 include 'koneksi.php';
 
+// Cek Login
 if (!isset($_SESSION['status_login']) || $_SESSION['status_login'] != true) {
   header("Location: login.php");
   exit;
 }
 
-// --- TAMBAH BANNER ---
+// --- LOAD LIBRARY PUSHER (SUPAYA BISA REALTIME) ---
+require __DIR__ . '/vendor/autoload.php';
+$options = array('cluster' => 'ap1', 'useTLS' => true);
+
+try {
+  $pusher = new Pusher\Pusher(
+    '122fe5dc53b428646f8b', // Key
+    '0be57d1316e4c58ef72c', // Secret
+    '2079485',              // App ID
+    $options
+  );
+} catch (Exception $e) {
+  $pusher = null;
+}
+
+// --- LOGIKA 1: TAMBAH BANNER ---
 if (isset($_POST['upload'])) {
   $judul = mysqli_real_escape_string($conn, $_POST['judul']);
   $subjudul = mysqli_real_escape_string($conn, $_POST['subjudul']);
 
+  // Upload Gambar
   $foto = $_FILES['gambar']['name'];
   $tmp = $_FILES['gambar']['tmp_name'];
   $fotobaru = date('dmYHis') . $foto;
   $path = "images/banners/" . $fotobaru;
 
+  // Cek Folder
   if (!file_exists('images/banners')) {
     mkdir('images/banners', 0777, true);
   }
@@ -25,6 +43,17 @@ if (isset($_POST['upload'])) {
     $query = mysqli_query($conn, "INSERT INTO banners (judul, subjudul, gambar) VALUES ('$judul', '$subjudul', '$fotobaru')");
 
     if ($query) {
+      // --- KIRIM SINYAL REALTIME ---
+      // Kita nebeng channel 'update-produk' supaya marketplace otomatis reload
+      if ($pusher) {
+        $pusher->trigger('marketplace-channel', 'update-produk', ['message' => 'Banner baru ditambahkan!']);
+      }
+      // -----------------------------
+
+      // Log Aktivitas
+      $log = "Admin mengupload banner promo: $judul";
+      mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log')");
+
       $_SESSION['notif_type'] = 'success';
       $_SESSION['notif_msg'] = 'Banner berhasil diupload!';
     }
@@ -36,18 +65,34 @@ if (isset($_POST['upload'])) {
   exit;
 }
 
-// --- HAPUS BANNER ---
+// --- LOGIKA 2: HAPUS BANNER ---
 if (isset($_GET['hapus'])) {
   $id = $_GET['hapus'];
+
+  // Ambil data lama
   $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM banners WHERE id='$id'"));
 
-  if (file_exists("images/banners/" . $data['gambar'])) {
-    unlink("images/banners/" . $data['gambar']);
-  }
+  // Hapus Database
+  $hapus = mysqli_query($conn, "DELETE FROM banners WHERE id='$id'");
 
-  if (mysqli_query($conn, "DELETE FROM banners WHERE id='$id'")) {
+  if ($hapus) {
+    // --- KIRIM SINYAL REALTIME ---
+    if ($pusher) {
+      $pusher->trigger('marketplace-channel', 'update-produk', ['message' => 'Banner dihapus!']);
+    }
+    // -----------------------------
+
+    // Log
+    $log = "Admin menghapus banner: " . $data['judul'];
+    mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log')");
+
+    // Hapus File Fisik
+    if (file_exists("images/banners/" . $data['gambar'])) {
+      unlink("images/banners/" . $data['gambar']);
+    }
+
     $_SESSION['notif_type'] = 'success';
-    $_SESSION['notif_msg'] = 'Banner dihapus.';
+    $_SESSION['notif_msg'] = 'Banner berhasil dihapus.';
   }
   header("Location: banner_admin.php");
   exit;
@@ -60,47 +105,75 @@ if (isset($_GET['hapus'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kelola Banner</title>
+  <title>Kelola Banner - Gitar Surabaya</title>
+  <link rel="icon" type="image/png" href="./images/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <link rel="stylesheet" href="css/admin.css">
+
   <style>
-    /* Style tambahan khusus banner grid (lebar) */
     .banner-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
     }
 
     .banner-card {
       background: #fff;
-      padding: 10px;
+      padding: 15px;
       border-radius: 12px;
-      position: relative;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .banner-card:hover {
+      transform: translateY(-5px);
     }
 
     .banner-img {
       width: 100%;
-      height: 150px;
+      height: 160px;
       object-fit: cover;
       border-radius: 8px;
-    }
-
-    .banner-info {
-      padding: 10px;
+      background: #eee;
+      margin-bottom: 10px;
     }
 
     .banner-info h4 {
-      margin: 0;
       font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: #333;
     }
 
     .banner-info p {
-      margin: 5px 0 0;
+      font-size: 13px;
       color: #666;
-      font-size: 14px;
+    }
+
+    .btn-delete-banner {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #E53935;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: 0.2s;
+    }
+
+    .btn-delete-banner:hover {
+      background: #E53935;
+      color: #fff;
     }
   </style>
 </head>
@@ -116,69 +189,85 @@ if (isset($_GET['hapus'])) {
   <div class="sidebar">
     <h2>Dashboard</h2>
     <div class="menu">
-      <a href="dashboard.php">Dashboard</a>
-      <a href="produk.php">Manajemen Produk</a>
-      <a href="pesanan.php">Pesanan</a>
-      <a href="galeri_admin.php">Galeri</a>
-      <a href="banner_admin.php" class="active">Banner Promo</a>
+      <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="produk.php"><i class="fas fa-box"></i> Manajemen Produk</a>
+      <a href="pesanan.php"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+      <a href="galeri_admin.php"><i class="fas fa-images"></i> Galeri</a>
+      <a href="banner_admin.php" class="active"><i class="fas fa-bullhorn"></i> Banner Promo</a>
       <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
     </div>
   </div>
+
   <div class="main-content">
     <div class="header-title">Kelola Banner Promo</div>
 
     <form method="POST" enctype="multipart/form-data">
       <div class="form-container" style="flex-direction: column;">
-        <div class="image-upload" style="width: 100%; height: 200px;">
-          <span id="uploadText"><i class="fas fa-image"></i> Klik Upload Banner (Landscape)</span>
-          <img id="imgPreview" src="#" alt="Preview" style="display:none;">
-          <input type="file" name="gambar" id="fileInput" accept="image/*" required>
+
+        <div class="image-upload" style="height: 250px; width: 100%;">
+          <span id="uploadText"><i class="fas fa-image" style="font-size:32px; margin-bottom:10px;"></i><br>Klik Upload
+            Banner (Landscape)</span>
+          <img id="imgPreview" src="#" alt="Preview Banner"
+            style="display:none; width:100%; height:100%; object-fit:cover; border-radius:12px;">
+          <input type="file" name="gambar" id="fileInput" accept="image/*" required
+            style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
         </div>
 
-        <div class="row-group" s
-tyle="display: flex; gap: 15px;">
-          <div class="form-group" style="flex:1;">
-            <label>Judul Utama</label>
-            <input type="text" name="judul" class="form-control" placeholder="Contoh: Diskon Akhir Tahun">
+        <div class="row-group" style="display: flex; gap: 20px; margin-top: 20px;">
+          <div class="form-group" style="flex: 1;">
+            <label>Judul Utama (Opsional)</label>
+            <input type="text" name="judul" class="form-control" placeholder="Contoh: Diskon Merdeka">
           </div>
-          <div class="form-group" style="flex:1;">
-            <label>Sub-Judul</label>
-            <input type="text" name="subjudul" class="form-control" placeholder="Contoh: Diskon hingga 50%">
+          <div class="form-group" style="flex: 1;">
+            <label>Sub-Judul (Opsional)</label>
+            <input type="text" name="subjudul" class="form-control" placeholder="Contoh: Up to 50% Off">
           </div>
         </div>
-        <button type="submit" name="upload" class="btn-submit">Upload Banner</button>
+
+        <button type="submit" name="upload" class="btn-submit"><i class="fas fa-upload"></i> Upload Banner</button>
       </div>
     </form>
 
-    <div class="header-title" style="font-size: 20px;">List Banner Aktif</div>
+    <div class="header-title" style="font-size: 20px; margin-top: 40px;">List Banner Aktif</div>
 
     <div class="banner-grid">
       <?php
       $result = mysqli_query($conn, "SELECT * FROM banners ORDER BY id DESC");
-      while ($row = mysqli_fetch_assoc($result)):
-        ?>
-        <div class="banner-card">
-          <img src="images/banners/<?= $row['gambar']; ?>" class="banner-img">
-          <div class="banner-info">
-            <h4><?= $row['judul']; ?></h4>
-            <p><?= $row['subjudul']; ?></p>
+      if (mysqli_num_rows($result) > 0):
+        while ($row = mysqli_fetch_assoc($result)):
+          ?>
+          <div class="banner-card">
+            <img src="images/banners/<?= $row['gambar']; ?>" class="banner-img">
+            <div class="banner-info">
+              <h4><?= $row['judul']; ?></h4>
+              <p><?= $row['subjudul']; ?></p>
+            </div>
+
+            <a href="#" onclick="confirmDelete(<?= $row['id']; ?>)" class="btn-delete-banner" title="Hapus Banner">
+              <i class="fas fa-trash"></i>
+            </a>
           </div>
-          <a href="#" onclick="confirmDelete(<?= $row['id']; ?>)" class="btn-delete" style="top: 10px; right: 10px;">
-            <i class="fas fa-trash"></i>
-          </a>
-        </div>
-      <?php endwhile; ?>
+          <?php
+        endwhile;
+      else:
+        ?>
+        <p style="color:#999; grid-column: 1/-1; text-align:center;">Belum ada banner yang diupload.</p>
+      <?php endif; ?>
     </div>
+
   </div>
 
   <script src="includes/admin_script.js"></script>
+
   <script>
+    // Preview Image Logic
     const fileInput = document.getElementById('fileInput');
     const imgPreview = document.getElementById('imgPreview');
     const uploadText = document.getElementById('uploadText');
 
     fileInput.addEventListener('change', function () {
-      if (this.files && this.files[0]) {
+      const file = this.files[0];
+      if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
           imgPreview.src = e.target.result;
@@ -189,21 +278,36 @@ tyle="display: flex; gap: 15px;">
       }
     });
 
+    // SweetAlert Delete
     function confirmDelete(id) {
       Swal.fire({
-        title: 'Hapus Banner?', text: "Tidak bisa dikembalikan!", icon: 'warning',
-        showCancelButton: true, confirmButtonColor: '#d33', confirmButtonText: 'Ya, Hapus!'
+        title: 'Hapus Banner?',
+        text: "Data tidak bisa dikembalikan!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Ya, Hapus!'
       }).then((result) => {
-        if (result.isConfirmed) window.location.href = `banner_admin.php?hapus=${id}`;
+        if (result.isConfirmed) {
+          window.location.href = `banner_admin.php?hapus=${id}`;
+        }
       })
     }
 
     <?php if (isset($_SESSION['notif_type'])): ?>
-      Swal.fire({ icon: '<?= $_SESSION['notif_type']; ?>', title: '<?= $_SESSION['notif_msg']; ?>', timer: 1500, showConfirmButton: false });
+      Swal.fire({
+        icon: '<?= $_SESSION['notif_type']; ?>',
+        title: '<?= $_SESSION['notif_type'] == 'success' ? 'Berhasil!' : 'Gagal!'; ?>',
+        text: '<?= $_SESSION['notif_msg']; ?>',
+        timer: 1500,
+        showConfirmButton: false
+      });
       <?php unset($_SESSION['notif_type']);
       unset($_SESSION['notif_msg']); ?>
     <?php endif; ?>
   </script>
+
 </body>
 
 </html>
