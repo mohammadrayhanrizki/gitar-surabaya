@@ -1,5 +1,5 @@
 /* ========================================
-   COMPONENTS.CSS
+   COMPONENTS.CSS (FINAL VERSION)
    File CSS untuk komponen yang digunakan bersama
    Berisi: Navbar (index/galeri/layanan), Footer, dan Tombol Global
 ======================================== */
@@ -9,9 +9,7 @@
    Navbar untuk halaman index.php, galeri.php, dan layanan.php
 ======================================== */
 
-/* 
- * Header utama dengan background transparent dan fixed positioning
- * Header akan tetap di atas saat user scroll halaman
+/* * Header utama dengan background transparent dan fixed positioning
  */
 .site-header {
   background-color: transparent;
@@ -24,19 +22,16 @@
   transition: all 0.3s ease;
 }
 
-/* 
- * Styling header saat di-scroll
- * Background menjadi putih dengan shadow untuk memberikan efek depth
+/* * Styling header saat di-scroll
+ * Background menjadi putih solid agar konten di bawahnya tidak balapan
  */
 .site-header.scrolled {
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  background-color: rgba(255, 255, 255, 1); /* Putih Solid */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
 }
 
-/* 
- * Container untuk header - flex layout centered
- * Mengatur layout horizontal dengan logo di kiri dan menu di kanan
+/* * Container untuk header - flex layout centered
  */
 .container {
   width: 90%;
@@ -48,9 +43,7 @@
   position: relative;
 }
 
-/* 
- * Logo styling dengan transition saat scroll
- * Logo akan mengecil saat header di-scroll
+/* * Logo styling dengan transition
  */
 .logo img {
   height: 90px;
@@ -63,9 +56,7 @@
   height: 70px;
 }
 
-/* 
- * Hamburger menu - disembunyikan di desktop
- * Hanya muncul di mobile untuk toggle menu
+/* * Hamburger menu - disembunyikan di desktop
  */
 .hamburger {
   display: none;
@@ -77,10 +68,6 @@
   z-index: 1001;
 }
 
-/* 
- * Styling garis hamburger menu
- * Tiga garis horizontal yang akan berubah menjadi X saat active
- */
 .hamburger span {
   width: 25px;
   height: 3px;
@@ -90,25 +77,12 @@
   border-radius: 3px;
 }
 
-/* 
- * Transformasi hamburger saat active (X shape)
- * Garis pertama dan ketiga berotasi membentuk X
- */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(8px, 8px);
-}
+/* Animasi Hamburger menjadi X */
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* 
- * Navigation menu layout horizontal
- * Menu items ditampilkan dalam satu baris dengan gap antar item
+/* * Navigation menu layout horizontal
  */
 .main-nav ul {
   display: flex;
@@ -117,10 +91,6 @@
   align-items: center;
 }
 
-/* 
- * Link styling dengan hover effect
- * Warna berubah dan muncul underline saat hover
- */
 .main-nav a {
   text-decoration: none;
   color: #333;
@@ -130,10 +100,7 @@
   position: relative;
 }
 
-/* 
- * Underline effect pada hover
- * Garis merah muncul dari kiri ke kanan saat hover
- */
+/* Efek garis bawah saat hover */
 .main-nav a::after {
   content: '';
   position: absolute;
@@ -145,47 +112,24 @@
   transition: width 0.3s ease;
 }
 
-/* Warna link berubah menjadi merah saat hover */
-.main-nav a:hover {
-  color: #E53935;
-}
+.main-nav a:hover { color: #E53935; }
+.main-nav a:hover::after { width: 100%; }
 
-/* Underline penuh saat hover */
-.main-nav a:hover::after {
-  width: 100%;
-}
+/* Active State */
+.main-nav a.active { color: #E53935; }
+.main-nav a.active::after { width: 100%; }
 
-/* 
- * Styling untuk active navigation link
- * Link yang sesuai dengan halaman saat ini ditandai dengan warna merah
- */
-.main-nav a.active {
-  color: #E53935;
-}
-
-.main-nav a.active::after {
-  width: 100%;
-}
 
 /* ========================================
    FOOTER
-   Footer yang digunakan di semua halaman
 ======================================== */
 
-/* 
- * Main footer container
- * Background putih dengan padding yang cukup untuk spacing
- */
 .footer {
   background-color: #fff;
   padding: 80px 0;
   margin-top: 100px;
 }
 
-/* 
- * Footer container layout
- * Flex layout untuk mengatur logo, social media, dan maps secara horizontal
- */
 .container-footer {
   width: 85%;
   max-width: 1200px;
@@ -196,73 +140,39 @@
   gap: 50px;
 }
 
-/* 
- * Footer logo
- * Logo footer dengan ukuran yang sesuai
- */
 .footer-logo img {
   width: 160px;
   height: auto;
   display: block;
 }
 
-/* 
- * Vertical divider di footer
- * Garis vertikal untuk memisahkan section footer
- */
 .footer-divider {
   width: 2px;
   background-color: #000;
   height: 180px;
 }
 
-/* 
- * Social media section
- * Container untuk icon dan link social media
- */
 .footer-socials {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* 
- * Individual social item
- * Setiap item social media dengan icon dan teks
- */
 .social-item {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* Ukuran icon social media */
-.social-item img {
-  width: 22px;
-  height: 22px;
-}
+.social-item img { width: 22px; height: 22px; }
+.social-item p { font-size: 15px; color: #000; margin: 0; }
 
-/* Styling teks social media */
-.social-item p {
-  font-size: 15px;
-  color: #000;
-  margin: 0;
-}
-
-/* 
- * Maps/location section
- * Section untuk menampilkan alamat toko
- */
 .footer-maps {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-/* 
- * Maps title dengan icon
- * Judul "Maps" dengan icon peta
- */
 .maps-title {
   display: flex;
   align-items: center;
@@ -270,123 +180,71 @@
   margin-bottom: 10px;
 }
 
-/* Ukuran icon maps */
-.maps-title img {
-  width: 20px;
-  height: 20px;
-}
+.maps-title img { width: 20px; height: 20px; }
+.maps-title p { font-weight: 600; color: #000; font-size: 15px; margin: 0; }
 
-/* Styling teks judul maps */
-.maps-title p {
-  font-weight: 600;
-  color: #000;
-  font-size: 15px;
-  margin: 0;
-}
-
-/* Styling alamat di footer */
-.footer-maps p {
+/* Styling alamat agar rapi */
+.footer-maps p:not(.maps-title p) {
   font-size: 14px;
-  color: #000;
+  color: #666; /* Sedikit abu agar tidak terlalu kontras */
   line-height: 1.6;
+  max-width: 280px;
   margin: 0;
 }
 
 /* ========================================
    TOMBOL BELANJA - GLOBAL
-   Tombol belanja yang digunakan di navbar
 ======================================== */
 
-/* 
- * Tombol belanja base styling
- * Background hitam dengan teks putih, digunakan di navbar
- */
 .btn-belanja {
   background: #000;
   color: #fff;
   padding: 10px 24px;
   text-decoration: none;
   font-weight: 600;
+  font-size: 16px;
   border-radius: 6px;
   border: 2px solid transparent;
   transition: all 0.3s ease;
   display: inline-block;
 }
 
-/* 
- * Hover effect tombol belanja
- * Background menjadi transparan dengan border merah
- */
 .btn-belanja:hover {
   background: transparent;
   border-color: #E53935;
   color: #E53935;
 }
 
-/* 
- * Tombol belanja desktop - ditampilkan hanya di layar besar
- * Versi desktop yang selalu terlihat di layar besar
- */
-.btn-belanja.desktop {
-  display: inline-block;
-}
+/* Versi Desktop */
+.btn-belanja.desktop { display: inline-block; }
+/* Versi Mobile (Hidden di Desktop) */
+.btn-belanja.mobile { display: none; }
 
-/* 
- * Tombol belanja mobile - disembunyikan di desktop
- * Versi mobile yang hanya muncul di layar kecil
- */
-.btn-belanja.mobile {
-  display: none;
-}
 
 /* ========================================
    RESPONSIVE - NAVBAR & FOOTER
-   Media queries untuk mobile dan tablet
 ======================================== */
 
 /* Tablet (769px - 1024px) */
 @media (max-width: 1024px) {
-
-  /* Header responsive */
-  .container {
-    width: 95%;
-  }
-
-  .logo img {
-    height: 70px;
-  }
-
-  .main-nav ul {
-    gap: 80px;
-  }
+  .container { width: 95%; }
+  .logo img { height: 70px; }
+  .main-nav ul { gap: 80px; }
 }
 
 /* Mobile (up to 768px) */
 @media (max-width: 768px) {
 
-  /* Header mobile */
-  .site-header {
-    padding: 20px 0;
-  }
+  /* Header Mobile */
+  .site-header { padding: 20px 0; }
+  .container { width: 90%; }
+  
+  .logo img { height: 50px; }
+  .site-header.scrolled .logo img { height: 45px; }
 
-  .container {
-    width: 90%;
-  }
+  .hamburger { display: flex; }
 
-  .logo img {
-    height: 50px;
-  }
-
-  .site-header.scrolled .logo img {
-    height: 45px;
-  }
-
-  /* Hamburger menu muncul di mobile */
-  .hamburger {
-    display: flex;
-  }
-
-  /* Navigation mobile - slide dari kanan */
+  /* Navigation Mobile (Slide dari Kanan) */
   .main-nav {
     position: fixed;
     top: 0;
@@ -394,58 +252,47 @@
     width: 70%;
     max-width: 300px;
     height: 100vh;
-    background-color: #fff;
+    background: #fff;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.06);
     transition: right 0.4s ease;
     z-index: 999;
-    padding-top: 100px;
+    padding-top: 100px; /* Ruang agar tidak tertutup tombol close/hamburger */
   }
 
-  /* Menu aktif saat hamburger diklik */
-  .main-nav.active {
-    right: 0;
-  }
+  .main-nav.active { right: 0; }
 
-  /* Menu items vertikal di mobile */
+  /* Menu Items */
   .main-nav ul {
     flex-direction: column;
     gap: 30px;
     padding: 0 40px;
+    align-items: flex-start; /* Rata kiri di dalam menu */
   }
 
-  .main-nav a {
-    font-size: 18px;
-  }
+  .main-nav a { font-size: 18px; }
 
-  /* Tombol belanja mobile */
-  .btn-belanja.desktop {
-    display: none;
-  }
-
+  /* Tombol Belanja di Mobile Menu */
+  .btn-belanja.desktop { display: none; }
+  
   .btn-belanja.mobile {
     display: block;
     background: #000;
     color: #fff;
     padding: 12px 32px;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 6px;
-    border: 2px solid #000;
-    transition: all 0.3s ease;
     text-align: center;
     width: fit-content;
-    margin-top: 20px;
-    margin-left: 60px;
+    /* Center tombol secara horizontal */
+    margin: 30px auto 0 auto; 
+    border: 2px solid #000;
   }
-
+  
   .btn-belanja.mobile:hover {
     background: transparent;
-    border-color: #E53935;
     color: #E53935;
-    text-decoration: none;
+    border-color: #E53935;
   }
 
-  /* Footer mobile */
+  /* Footer Mobile */
   .footer {
     padding: 50px 0;
     margin-top: 60px;
@@ -453,17 +300,15 @@
 
   .container-footer {
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Center semua konten footer */
     text-align: center;
     width: 90%;
     gap: 30px;
   }
 
-  .footer-logo img {
-    width: 120px;
-  }
+  .footer-logo img { width: 120px; }
 
-  /* Divider menjadi horizontal di mobile */
+  /* Divider Horizontal */
   .footer-divider {
     width: 80%;
     height: 2px;
@@ -473,15 +318,23 @@
     align-items: center;
     gap: 15px;
   }
+  
+  /* Agar icon dan teks sosmed tetap rapi saat di-center */
+  .social-item {
+      justify-content: center;
+  }
 
   .footer-maps {
     align-items: center;
+  }
+  
+  /* Judul maps juga di-center */
+  .maps-title {
+      justify-content: center;
   }
 }
 
 /* Small Mobile (up to 480px) */
 @media (max-width: 480px) {
-  .container {
-    width: 90%;
-  }
+  .container { width: 90%; }
 }

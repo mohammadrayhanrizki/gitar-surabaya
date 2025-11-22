@@ -1,6 +1,6 @@
 /* ========================================
-   MARKETPLACE.CSS - FINAL VERSION
-   Berisi: Navbar, Banner (Responsive), Product Sections, Brand Sections, dan Cart Modal
+   MARKETPLACE.CSS - FINAL VERSION WITH CART MODAL Z-INDEX FIX
+   Berisi: Navbar, Banner, Product Sections, Brand Sections, dan Cart Modal
 ======================================== */
 
 /* ----------------------------------------
@@ -165,7 +165,7 @@
 
 
 /* ----------------------------------------
-   2. BANNER MARKETPLACE (Dynamic & Responsive)
+   2. BANNER MARKETPLACE
 ---------------------------------------- */
 .banner-marketplace {
   position: relative;
@@ -173,13 +173,10 @@
   border-radius: 16px;
   overflow: hidden;
   width: calc(100% - 160px);
-  /* Full width - margin */
   aspect-ratio: 3 / 1;
-  /* Rasio 3:1 (Wide) */
   background: #eee;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   touch-action: pan-y;
-  /* Support Swipe */
   user-select: none;
 }
 
@@ -218,7 +215,6 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  /* Gelap Transparan */
   z-index: 3;
 }
 
@@ -514,7 +510,7 @@
 
 
 /* ----------------------------------------
-   5. CART MODAL STYLES
+   5. CART MODAL STYLES (Z-INDEX FIX)
 ---------------------------------------- */
 .cart-modal {
   position: fixed;
@@ -524,7 +520,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
-  z-index: 99999;
+  z-index: 1050;
   display: none;
   justify-content: center;
   align-items: center;
@@ -726,7 +722,7 @@
 
 
 /* ----------------------------------------
-   6. RESPONSIVE DESIGN (FIXED)
+   6. RESPONSIVE DESIGN
 ---------------------------------------- */
 
 /* Tablet (769px - 1024px) */
@@ -819,7 +815,6 @@
     display: none !important;
   }
 
-  /* Mobile Menu Animation */
   .nav-right-marketplace.active {
     display: flex !important;
     position: fixed;
@@ -854,7 +849,6 @@
     z-index: 1001;
   }
 
-  /* Banner Mobile */
   .banner-marketplace {
     margin: 20px auto;
     width: calc(100% - 40px);
@@ -888,7 +882,6 @@
     height: 130px;
   }
 
-  /* === BRAND MOBILE FIX === */
   .brand-section-marketplace {
     margin: 40px auto;
     padding: 0 20px;
@@ -897,7 +890,6 @@
   .brand-container {
     display: flex;
     flex-direction: column !important;
-    /* Paksa Vertikal */
     align-items: center;
     gap: 20px;
     padding: 0;
@@ -935,7 +927,6 @@
     display: none !important;
   }
 
-  /* Cart Modal Mobile */
   .cart-content {
     width: 95%;
     padding: 20px;

@@ -2,33 +2,38 @@
 session_start();
 include 'koneksi.php';
 
-// Jika sudah login, lempar langsung ke dashboard (Gak perlu login lagi)
+// Jika sudah login, langsung ke dashboard
 if (isset($_SESSION['status_login']) && $_SESSION['status_login'] == true) {
   header("Location: dashboard.php");
   exit;
 }
 
-// LOGIKA LOGIN
+// Proses Login
 if (isset($_POST['login'])) {
   $user = mysqli_real_escape_string($conn, $_POST['user']);
-  $pass = mysqli_real_escape_string($conn, $_POST['pass']);
+  $pass = $_POST['pass'];
 
-  // Cek username & password di database
-  $cek = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$user' AND password = '$pass'");
+  // Cek username di database
+  $cek = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$user'");
 
   if (mysqli_num_rows($cek) > 0) {
     $d = mysqli_fetch_object($cek);
-    $_SESSION['status_login'] = true;
-    $_SESSION['admin_global'] = $d;
-    $_SESSION['id'] = $d->id;
-
-    echo '<script>window.location="dashboard.php"</script>';
+    
+    // Verifikasi Password Hash
+    if (password_verify($pass, $d->PASSWORD)) {
+        $_SESSION['status_login'] = true;
+        $_SESSION['a_global'] = $d;
+        $_SESSION['id'] = $d->admin_id;
+        
+        echo '<script>window.location="dashboard.php"</script>';
+    } else {
+        $error_message = true;
+    }
   } else {
-    echo '<script>alert("Username atau Password Salah!")</script>';
+    $error_message = true;
   }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -37,6 +42,7 @@ if (isset($_POST['login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Admin - Gitar Surabaya</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     * {
       margin: 0;
@@ -136,6 +142,18 @@ if (isset($_POST['login'])) {
       <button type="submit" name="login" class="btn-login">Masuk Dashboard</button>
     </form>
   </div>
+
+  <?php if (isset($error_message)): ?>
+  <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Gagal!',
+      text: 'Username atau Password Salah!',
+      confirmButtonColor: '#000',
+      confirmButtonText: 'Coba Lagi'
+    });
+  </script>
+  <?php endif; ?>
 
 </body>
 

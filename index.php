@@ -4,7 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gitar Surabaya</title>
+    <title>Gitar Surabaya - Toko Gitar Terlengkap & Termurah</title>
+    <meta name="description" content="Pusat jual beli gitar akustik, listrik, dan aksesoris musik terlengkap di Surabaya. Harga murah, kualitas terjamin, dan bergaransi.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gitarsurabaya.com/">
+    <meta property="og:title" content="Gitar Surabaya - Toko Gitar Terlengkap & Termurah">
+    <meta property="og:description" content="Pusat jual beli gitar akustik, listrik, dan aksesoris musik terlengkap di Surabaya.">
+    <meta property="og:image" content="https://gitarsurabaya.com/images/logo.png">
+
     <!-- Memuat font dari Google -->
     <link rel="icon" type="image/png" href="./images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,11 +85,8 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <!-- Bagian bawah halaman berisi logo, kontak sosial, dan alamat -->
     <?php include './includes/footer.php'; ?>
 
-    <!-- Memuat file JavaScript -->
     <script src="./includes/script.js"></script>
 </body>
 

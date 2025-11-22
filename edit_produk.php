@@ -95,18 +95,18 @@ if (isset($_POST['update'])) {
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <div class="mobile-header">
-    <h2>Gitar SBY.</h2>
+    <h2>Dashboard</h2>
     <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
   </div>
 
   <div class="sidebar">
-    <h2>Dashboard.</h2>
+    <h2>Dashboard</h2>
     <div class="menu">
       <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
       <a href="produk.php"><i class="fas fa-box"></i> Manajemen Produk</a>
       <a href="pesanan.php"><i class="fas fa-shopping-cart"></i> Pesanan</a>
       <a href="galeri_admin.php"><i class="fas fa-images"></i> Galeri</a>
-      <a href="banner_admin.php" ><i class="fas fa-bullhorn"></i> Banner Promo</a>
+      <a href="banner_admin.php"><i class="fas fa-bullhorn"></i> Banner Promo</a>
       <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
     </div>
   </div>
@@ -127,9 +127,11 @@ if (isset($_POST['update'])) {
             <label>Nama Produk</label>
             <input type="text" name="nama" class="form-control" value="<?= $data['nama_produk']; ?>" required>
           </div>
+          
           <div class="form-group">
             <label>Kategori / Merk</label>
             <select name="kategori" class="form-control" required>
+              <option value="">-- Pilih Merk --</option>
               <option value="Yamaha" <?= ($data['kategori'] == 'Yamaha') ? 'selected' : '' ?>>Yamaha</option>
               <option value="Fender" <?= ($data['kategori'] == 'Fender') ? 'selected' : '' ?>>Fender</option>
               <option value="Bromo" <?= ($data['kategori'] == 'Bromo') ? 'selected' : '' ?>>Bromo</option>

@@ -39,16 +39,25 @@ if (isset($_POST['upload'])) {
     mkdir('images/banners', 0777, true);
   }
 
+  // --- VALIDASI FILE ---
+  $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  $file_type = mime_content_type($tmp);
+  
+  if (!in_array($file_type, $allowed_types)) {
+      $_SESSION['notif_type'] = 'error';
+      $_SESSION['notif_msg'] = 'Format file tidak valid! Hanya JPG, PNG, GIF, WEBP.';
+      header("Location: banner_admin.php");
+      exit;
+  }
+
   if (move_uploaded_file($tmp, $path)) {
     $query = mysqli_query($conn, "INSERT INTO banners (judul, subjudul, gambar) VALUES ('$judul', '$subjudul', '$fotobaru')");
 
     if ($query) {
       // --- KIRIM SINYAL REALTIME ---
-      // Kita nebeng channel 'update-produk' supaya marketplace otomatis reload
       if ($pusher) {
         $pusher->trigger('marketplace-channel', 'update-produk', ['message' => 'Banner baru ditambahkan!']);
       }
-      // -----------------------------
 
       // Log Aktivitas
       $log = "Admin mengupload banner promo: $judul";
@@ -80,7 +89,6 @@ if (isset($_GET['hapus'])) {
     if ($pusher) {
       $pusher->trigger('marketplace-channel', 'update-produk', ['message' => 'Banner dihapus!']);
     }
-    // -----------------------------
 
     // Log
     $log = "Admin menghapus banner: " . $data['judul'];
@@ -98,7 +106,6 @@ if (isset($_GET['hapus'])) {
   exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 

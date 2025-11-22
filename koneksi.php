@@ -1,14 +1,10 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "toko_gitar";
+// koneksi.php
+require_once 'config.php'; // Load konfigurasi
 
-// Melakukan koneksi
-$conn = mysqli_connect($host, $user, $pass, $db);
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-// Cek koneksi
 if (!$conn) {
-    die("Koneksi Gagal: " . mysqli_connect_error());
+    die("Koneksi Database Gagal: " . mysqli_connect_error());
 }
 ?>

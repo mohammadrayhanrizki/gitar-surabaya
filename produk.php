@@ -50,6 +50,17 @@ if (isset($_POST['tambah'])) {
     mkdir('images/products', 0777, true);
   }
 
+  // --- VALIDASI FILE ---
+  $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  $file_type = mime_content_type($tmp);
+  
+  if (!in_array($file_type, $allowed_types)) {
+      $_SESSION['notif_type'] = 'error';
+      $_SESSION['notif_msg'] = 'Format file tidak valid! Hanya JPG, PNG, GIF, WEBP.';
+      header("Location: produk.php");
+      exit;
+  }
+
   if (move_uploaded_file($tmp, $path)) {
     $query = mysqli_query($conn, "INSERT INTO produk (nama_produk, kategori, harga, stok, deskripsi, gambar) VALUES ('$nama', '$kategori', '$harga', '$stok', '$deskripsi', '$fotobaru')");
 
@@ -59,7 +70,6 @@ if (isset($_POST['tambah'])) {
         $data['message'] = 'Produk baru: ' . $nama;
         $pusher->trigger('marketplace-channel', 'update-produk', $data);
       }
-      // ---------------------------------------
 
       $log_text = "Admin menambahkan produk $nama (Stok: $stok)";
       mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log_text')");
@@ -90,7 +100,6 @@ if (isset($_GET['hapus'])) {
     if ($pusher) {
       $pusher->trigger('marketplace-channel', 'update-produk', ['message' => 'Produk dihapus']);
     }
-    // ---------------------------------------
 
     $log_text = "Admin menghapus produk " . $data['nama_produk'];
     mysqli_query($conn, "INSERT INTO riwayat_aktivitas (isi_aktivitas) VALUES ('$log_text')");
@@ -160,16 +169,18 @@ if (isset($_GET['hapus'])) {
             <label>Nama Produk</label>
             <input type="text" name="nama" class="form-control" placeholder="Contoh: Yamaha F310" required>
           </div>
+          
           <div class="form-group">
             <label>Kategori / Merk</label>
             <select name="kategori" class="form-control" required>
               <option value="">-- Pilih Merk --</option>
               <option value="Yamaha">Yamaha</option>
+              <option value="Fender">Fender</option>
               <option value="Bromo">Bromo</option>
               <option value="Cort">Cort</option>
+              <option value="Taylor">Taylor</option>
               <option value="Ibanez">Ibanez</option>
-              <option value="Aksesoris">Senar Gitar</option>
-              <option value="Lainnya">Lainnya</option>
+              <option value="Aksesoris">Aksesoris</option>
             </select>
           </div>
 
