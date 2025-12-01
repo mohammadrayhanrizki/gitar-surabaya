@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gitar Surabaya - Toko Gitar Terlengkap & Termurah</title>
-    <meta name="description" content="Pusat jual beli gitar akustik, listrik, dan aksesoris musik terlengkap di Surabaya. Harga murah, kualitas terjamin, dan bergaransi.">
-    
+    <title>Gitar Surabaya</title>
+    <meta name="description"
+        content="Pusat jual beli gitar akustik, listrik, dan aksesoris musik terlengkap di Surabaya. Harga murah, kualitas terjamin, dan bergaransi.">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gitarsurabaya.com/">
     <meta property="og:title" content="Gitar Surabaya - Toko Gitar Terlengkap & Termurah">
-    <meta property="og:description" content="Pusat jual beli gitar akustik, listrik, dan aksesoris musik terlengkap di Surabaya.">
+    <meta property="og:description"
+        content="Pusat jual beli gitar akustik, listrik, dan aksesoris musik terlengkap di Surabaya.">
     <meta property="og:image" content="https://gitarsurabaya.com/images/logo.png">
 
     <!-- Memuat font dari Google -->
@@ -42,8 +44,8 @@
             <div class="text" data-animate="fade-up">
                 <h5>TOKO GITAR</h5>
                 <h1>PALING MURAH <br>SE-INDONESIA</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut non corrupti quibusdam eos enim totam
-                    iusto! Sit, voluptas pariatur sunt dolorem alias repellendus soluta cum modi vero vitae!</p>
+                <p>Cari gitar akustik murah tapi tetap keren? GitarSurabaya Nginden siap bantu! Jual-beli gitar akustik
+                    paling terjangkau se-Indonesia.</p>
                 <div class="hero-buttons" data-animate="fade-up" data-delay="200">
                     <!-- Tombol aksi utama -->
                     <a href="marketplace.php" class="btn-primary">BELANJA</a>
@@ -69,18 +71,20 @@
                 <img src="./images/logogitarsby2.png" alt="Logo Gitar Surabaya">
             </div>
             <div class="text-tentang">
-                <p data-animate="slide-right" data-delay="100">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eos aut ullam cumque culpa! Doloremque
-                    similique quod, ipsam nemo reiciendis earum nulla ex placeat distinctio nihil aliquid in nostrum
-                    officiis quia?</p>
-                <p data-animate="slide-right" data-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Distinctio velit architecto soluta
-                    accusantium reiciendis sed labore maxime odit quod voluptatibus obcaecati maiores tempore cum ipsam
-                    sit minima, impedit consequuntur ipsa!</p>
-                <p data-animate="slide-right" data-delay="300">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Aspernatur, porro consectetur. Dolorum
-                    libero laborum recusandae cumque, temporibus labore doloremque, numquam autem ullam provident illum
-                    eligendi non consequuntur amet sapiente necessitatibus.</p>
+                <p data-animate="slide-right" data-delay="100">Didirikan tahun 2015, GitarSurabaya memulai usaha dengan
+                    sistem door-to-door dan pemasaran melalui OLX serta Facebook. Pada 2016, stok gitar mulai stabil
+                    (20–30 unit) di rumah Ngagel Mulyo No. 15, lalu Agustus tahun tersebut membuka toko pertama
+                    berukuran 2×8 meter tanpa karyawan.
+
+                </p>
+                <p data-animate="slide-right" data-delay="200">Awal 2017, karyawan pertama bergabung, dan cabang
+                    Semolowaru menjadi cabang paling ramai dari 2016–2024. Perkembangan pesat ini melahirkan cabang
+                    kedua di Darmawangsa (Dito Music), lalu cabang ketiga di Lidah Kulon dan Malang pada tahun 2019.
+
+                </p>
+                <p data-animate="slide-right" data-delay="300">
+                    Hingga kini, GitarSurabaya tetap fokus pada penyediaan gitar akustik terjangkau serta servis gitar
+                    akustik profesional, dengan toko utama yang terus menjadi pusat keramaian pelanggan.</p>
             </div>
         </div>
     </section>

@@ -1,0 +1,47 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Environment & Config
+.env
+.env.local
+.env.*.local
+config.local.php
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+error.log
+debug.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Upload directories (keep structure, ignore content)
+/images/products/*
+!/images/products/.gitkeep
+/images/gallery/*
+!/images/gallery/.gitkeep
+/images/banners/*
+!/images/banners/.gitkeep
+
+# Database dumps (optional - uncomment if needed)
+# *.sql
+# *.sql.gz
+
+# Sensitive files
+generate_hash.php

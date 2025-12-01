@@ -944,6 +944,200 @@
     height: 40px;
   }
 
+  .banner-arrow {
+    display: none;
+  }
+
+  .product-section-marketplace {
+    margin: 30px auto;
+    padding: 20px 40px;
+  }
+
+  .scroll-btn-marketplace {
+    display: none;
+  }
+
+  .brand-section-marketplace {
+    margin: 40px auto;
+    padding: 0 40px;
+  }
+
+  .brand-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .brand-logo-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 15px 20px;
+    gap: 10px;
+  }
+
+  .logo-marketplace img {
+    height: 50px;
+  }
+
+  .hamburger-marketplace {
+    display: flex;
+    order: 4;
+  }
+
+  .search-bar-marketplace {
+    margin: 0 10px;
+    order: 2;
+  }
+
+  .search-bar-marketplace input {
+    padding: 10px 16px 10px 42px;
+    font-size: 13px;
+    width: 100%;
+  }
+
+  .nav-right-marketplace {
+    display: none !important;
+  }
+
+  .nav-right-marketplace.active {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding-top: 100px;
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+    padding-left: 40px;
+    animation: slideInFromRight 0.4s ease;
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      right: -100%;
+    }
+
+    to {
+      right: 0;
+    }
+  }
+
+  .cart-link {
+    order: 3;
+    z-index: 1001;
+  }
+
+  .banner-marketplace {
+    margin: 20px auto;
+    width: calc(100% - 40px);
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  .banner-content h2 {
+    font-size: 24px;
+  }
+
+  .banner-content p {
+    font-size: 14px;
+  }
+
+  .banner-arrow {
+    display: none;
+  }
+
+  .product-section-marketplace {
+    margin: 30px auto;
+    padding: 20px;
+  }
+
+  .product-card-marketplace {
+    min-width: 160px;
+    padding: 12px;
+  }
+
+  .product-image-placeholder {
+    height: 130px;
+  }
+
+  .brand-section-marketplace {
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  .brand-container {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 20px;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    height: auto;
+    overflow: visible;
+  }
+
+  .brand-logo-sidebar {
+    width: 100%;
+    flex: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .brand-img-placeholder {
+    max-width: 100px;
+  }
+
+  .brand-product-slider {
+    width: 100% !important;
+    flex: none;
+  }
+
+  .product-list-marketplace {
+    padding-bottom: 10px;
+  }
+
+  .scroll-btn-marketplace {
+    display: none !important;
+  }
+
+  .cart-content {
+    width: 95%;
+    padding: 20px;
+    max-height: 90vh;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 12px 15px;
+  }
+
+  .logo-marketplace img {
+    height: 40px;
+  }
+
   .search-bar-marketplace input {
     font-size: 12px;
     padding: 8px 14px 8px 36px;
@@ -956,5 +1150,45 @@
 
   .product-image-placeholder {
     height: 120px;
+  }
+}
+
+/* ----------------------------------------
+   7. BACK NAVIGATION (NEW)
+---------------------------------------- */
+.back-nav-container {
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding: 0 20px;
+}
+
+.back-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.back-nav i {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.back-nav:hover {
+  color: #E53935;
+}
+
+.back-nav:hover i {
+  transform: translateX(-4px);
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+  .back-nav-container {
+    margin-top: 20px;
   }
 }

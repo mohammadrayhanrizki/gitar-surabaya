@@ -182,6 +182,50 @@ if (isset($_GET['hapus'])) {
       background: #E53935;
       color: #fff;
     }
+
+    /* CSS Khusus untuk Upload Box (Diambil dari galeri_admin.php) */
+    .upload-box {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      text-align: center;
+      border: 2px dashed #ccc;
+      margin-bottom: 30px;
+      position: relative;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+    }
+
+    .upload-box:hover {
+      background: #F9F9F9;
+      border-color: #000;
+    }
+
+    .upload-box input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .upload-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: #555;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 1;
+    }
   </style>
 </head>
 
@@ -211,27 +255,37 @@ if (isset($_GET['hapus'])) {
     <form method="POST" enctype="multipart/form-data">
       <div class="form-container" style="flex-direction: column;">
 
-        <div class="image-upload" style="height: 250px; width: 100%;">
-          <span id="uploadText"><i class="fas fa-image" style="font-size:32px; margin-bottom:10px;"></i><br>Klik Upload
-            Banner (Landscape)</span>
-          <img id="imgPreview" src="#" alt="Preview Banner"
-            style="display:none; width:100%; height:100%; object-fit:cover; border-radius:12px;">
-          <input type="file" name="gambar" id="fileInput" accept="image/*" required
-            style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
+        <div class="upload-box" id="dropZone">
+          
+          <!-- Label Default -->
+          <div class="upload-label" id="uploadLabel">
+            <i class="fas fa-image" style="font-size:32px; color:#ccc;"></i>
+            <span id="uploadText">Klik Upload Banner (Landscape)</span>
+          </div>
+
+          <!-- Image Preview -->
+          <img id="imgPreview" src="" alt="Preview Banner"
+            style="display:none; max-width:100%; max-height:100%; object-fit:contain; border-radius:12px; z-index: 2;">
+          
+          <!-- Input File -->
+          <input type="file" name="gambar" id="fileInput" accept="image/*" required>
         </div>
 
-        <div class="row-group" style="display: flex; gap: 20px; margin-top: 20px;">
-          <div class="form-group" style="flex: 1;">
-            <label>Judul Utama (Opsional)</label>
-            <input type="text" name="judul" class="form-control" placeholder="Contoh: Diskon Merdeka">
+        <div id="extraFields" style="display: none; width: 100%; margin-top: 20px;">
+          <div class="row-group" style="display: flex; gap: 20px;">
+            <div class="form-group" style="flex: 1;">
+              <label>Judul Utama (Opsional)</label>
+              <input type="text" name="judul" class="form-control" placeholder="Contoh: Diskon Merdeka">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label>Sub-Judul (Opsional)</label>
+              <input type="text" name="subjudul" class="form-control" placeholder="Contoh: Up to 50% Off">
+            </div>
           </div>
-          <div class="form-group" style="flex: 1;">
-            <label>Sub-Judul (Opsional)</label>
-            <input type="text" name="subjudul" class="form-control" placeholder="Contoh: Up to 50% Off">
-          </div>
+
+          <button type="submit" name="upload" class="btn-submit"><i class="fas fa-upload"></i> Upload Banner</button>
         </div>
 
-        <button type="submit" name="upload" class="btn-submit"><i class="fas fa-upload"></i> Upload Banner</button>
       </div>
     </form>
 
@@ -267,21 +321,37 @@ if (isset($_GET['hapus'])) {
   <script src="includes/admin_script.js"></script>
 
   <script>
-    // Preview Image Logic
-    const fileInput = document.getElementById('fileInput');
-    const imgPreview = document.getElementById('imgPreview');
-    const uploadText = document.getElementById('uploadText');
+    document.addEventListener("DOMContentLoaded", function() {
+      // Preview Image Logic
+      const fileInput = document.getElementById('fileInput');
+      const imgPreview = document.getElementById('imgPreview');
+      const uploadLabel = document.getElementById('uploadLabel');
+      const extraFields = document.getElementById('extraFields');
 
-    fileInput.addEventListener('change', function () {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          imgPreview.src = e.target.result;
-          imgPreview.style.display = 'block';
-          uploadText.style.display = 'none';
-        }
-        reader.readAsDataURL(this.files[0]);
+      if (fileInput) {
+        fileInput.addEventListener('change', function () {
+          console.log("File input changed");
+          const file = this.files[0];
+          if (file) {
+            console.log("File selected:", file.name);
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              console.log("File read successfully");
+              // Tampilkan gambar
+              imgPreview.src = e.target.result;
+              imgPreview.style.setProperty('display', 'block', 'important');
+              
+              // Sembunyikan label
+              uploadLabel.style.setProperty('display', 'none', 'important');
+            }
+            reader.readAsDataURL(file);
+
+            // Tampilkan input fields
+            extraFields.style.display = 'block';
+          } else {
+            console.log("No file selected");
+          }
+        });
       }
     });
 

@@ -237,7 +237,6 @@ if (isset($_GET['hapus'])) {
       transition: 0.2s;
     }
 
-    .btn-delete:hover {
       background: #E53935;
       color: #fff;
       transform: scale(1.1);
@@ -281,12 +280,20 @@ if (isset($_GET['hapus'])) {
     <div class="header-title">Kelola Galeri</div>
 
     <form method="POST" enctype="multipart/form-data">
-      <div class="upload-box" id="dropZone">
-        <div class="upload-label">
+      <div class="upload-box" id="dropZone" style="display: flex; align-items: center; justify-content: center; min-height: 200px; position: relative;">
+        
+        <!-- Label Default -->
+        <div class="upload-label" id="uploadLabel">
           <i class="fas fa-image" style="font-size:32px; color:#ccc;"></i>
           <span>+ Klik untuk Pilih Foto</span>
         </div>
-        <input type="file" name="gambar" id="fileInput" accept="image/*" required>
+
+        <!-- Image Preview (Hidden by default) -->
+        <img id="imgPreview" src="#" alt="Preview" style="display:none; max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain; z-index: 2;">
+
+        <!-- Input File (Invisible but clickable) -->
+        <input type="file" name="gambar" id="fileInput" accept="image/*" required 
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 3;">
       </div>
 
       <div id="extraFields">
@@ -324,16 +331,25 @@ if (isset($_GET['hapus'])) {
   <script>
     const fileInput = document.getElementById('fileInput');
     const extraFields = document.getElementById('extraFields');
-    const labelText = document.querySelector('.upload-label span');
-    const labelIcon = document.querySelector('.upload-label i');
+    const uploadLabel = document.getElementById('uploadLabel');
+    const imgPreview = document.getElementById('imgPreview');
     const inputJudul = document.querySelector('.input-judul');
 
     fileInput.addEventListener('change', function () {
-      if (this.files && this.files[0]) {
-        labelText.textContent = "File Siap: " + this.files[0].name;
-        labelText.style.color = "#2E7D32";
-        labelIcon.className = "fas fa-check-circle";
-        labelIcon.style.color = "#2E7D32";
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Tampilkan gambar
+            imgPreview.src = e.target.result;
+            imgPreview.style.display = 'block';
+            
+            // Sembunyikan label default
+            uploadLabel.style.display = 'none';
+        }
+        reader.readAsDataURL(file);
+        
+        // Tampilkan form judul & tombol upload
         extraFields.style.display = "block";
         inputJudul.focus();
       }

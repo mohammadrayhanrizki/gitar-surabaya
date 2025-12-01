@@ -258,9 +258,7 @@ if (!$produk) {
       <div class="logo-marketplace">
         <a href="index.php"><img src="images/logo-1.png" alt="Gitar Surabaya"></a>
       </div>
-      <nav class="nav-right-marketplace">
-        <a href="marketplace.php">Kembali Belanja</a>
-      </nav>
+      
       <a href="#cart" class="cart-link">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="9" cy="21" r="1"></circle>
@@ -271,6 +269,12 @@ if (!$produk) {
       </a>
     </div>
   </header>
+
+  <div class="back-nav-container">
+    <a href="marketplace.php" class="back-nav">
+      <i class="fas fa-arrow-left"></i> Kembali ke Marketplace
+    </a>
+  </div>
 
   <div class="detail-container">
     <div class="detail-image">
