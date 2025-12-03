@@ -1,157 +1,140 @@
 /* ========================================
-   GALERI.CSS
-   File CSS khusus untuk halaman galeri.php
-   Berisi: Gallery Grid dan Content Wrapper
-======================================== */
-
-/* ========================================
-   CONTENT WRAPPER
-   Container utama untuk konten galeri
+   GALERI.CSS - REDESIGNED
+   Simple, Clean, 1:1 Grid Layout
 ======================================== */
 
 /* 
- * Main content wrapper untuk galeri
- * Container dengan max-width dan padding untuk spacing
+ * Content Wrapper
+ * Container utama untuk konten galeri
  */
 .content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 140px 50px 60px;
+  padding: 120px 20px 60px;
+  /* Adjusted padding */
 }
 
 /* 
- * Page title galeri
- * Judul halaman "Galeri Pembeli" dengan styling yang menonjol
- */
-.page-title {
-  font-size: 36px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 40px;
-  color: #000;
-}
-
-/* 
- * Galeri text section
- * Section untuk judul dan deskripsi galeri
+ * Page Title & Text
  */
 .galeri-text {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.galeri-text h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.galeri-text p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
 }
 
 /* ========================================
    GALLERY GRID
-   Grid layout untuk menampilkan foto-foto galeri
 ======================================== */
 
-/* 
- * Grid layout untuk galeri - 5 kolom
- * Grid dengan 5 kolom untuk desktop dengan gap antar item
- */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
-  padding: 20px 0;
+  /* Responsive grid: minimal 250px lebar, sisanya auto-fill */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding-bottom: 40px;
 }
 
 /* 
- * Gallery item container
- * Container untuk setiap item galeri dengan flex untuk centering
+ * Gallery Item Container
  */
 .gallery-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  /* Default block behavior */
 }
 
 /* 
- * Placeholder untuk gallery item
- * Container dengan background abu-abu dan border radius unik
- * Efek shadow untuk memberikan depth
+ * Item Placeholder (The Card)
+ * Simple design: Rounded corners, subtle shadow, 1:1 ratio
  */
 .item-placeholder {
   width: 100%;
-  height: 250px;
-  background-color: #E0E0E0;
-  border-radius: 30px 0 30px 30px;
-  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.12);
-  border: 1px solid #d0d0d0;
-  transform: translate(-3px, -3px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 1 / 1;
+  /* Force Square */
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  /* Simple rounded corners */
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 /* 
- * Gallery item image
- * Gambar galeri dengan object-fit cover untuk menjaga aspect ratio
+ * Image Styling
  */
 .item-placeholder img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Ensure image covers the square without distortion */
   display: block;
+  transition: transform 0.5s ease;
 }
 
 /* 
- * Hover effect pada gallery item
- * Item naik sedikit dan shadow lebih besar saat hover
+ * Hover Effects
+ * Simple lift and slight image zoom
  */
 .item-placeholder:hover {
-  transform: translate(0, -6px);
-  box-shadow: 14px 14px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.item-placeholder:hover img {
+  transform: scale(1.05);
+  /* Subtle zoom */
 }
 
 /* ========================================
-   RESPONSIVE - GALLERY
-   Media queries untuk tablet dan mobile
+   RESPONSIVE
 ======================================== */
-
-/* Tablet (769px - 1024px) */
-@media (max-width: 1024px) {
-
-  /* Gallery grid menjadi 4 kolom di tablet */
-  .gallery-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
 
 /* Mobile (up to 768px) */
 @media (max-width: 768px) {
-  /* Content wrapper dengan padding lebih kecil */
   .content-wrapper {
-    padding: 140px 20px 60px;
+    padding-top: 100px;
   }
 
-  /* Gallery grid menjadi 2 kolom di mobile */
+  .galeri-text h2 {
+    font-size: 28px;
+  }
+
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    padding: 20px;
+    /* Di mobile, grid akan menyesuaikan auto-fill, 
+       tapi kita bisa paksa gap lebih kecil jika perlu */
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    /* Smaller min-width for mobile 2-col */
   }
 }
 
 /* Small Mobile (up to 480px) */
 @media (max-width: 480px) {
-
-  /* Gallery grid menjadi 1 kolom di small mobile */
   .gallery-grid {
-    grid-template-columns: 1fr;
-    gap: 50px;
-    padding: 16px;
+    gap: 15px;
+    /* Tetap pertahankan 2 kolom jika memungkinkan, atau 1 kolom jika layar sangat sempit */
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Page title lebih kecil */
-  .page-title {
-    font-size: 28px;
-  }
-
-  /* Content wrapper dengan padding minimal */
-  .content-wrapper {
-    padding: 140px 15px 60px;
+  .galeri-text h2 {
+    font-size: 24px;
   }
 }
