@@ -127,21 +127,6 @@ if (isset($_POST['update'])) {
             <label>Nama Produk</label>
             <input type="text" name="nama" class="form-control" value="<?= $data['nama_produk']; ?>" required>
           </div>
-          
-          <div class="form-group">
-            <label>Kategori / Merk</label>
-            <select name="kategori" class="form-control" required>
-              <option value="">-- Pilih Merk --</option>
-              <option value="Cowboy" <?= ($data['kategori'] == 'Cowboy') ? 'selected' : '' ?>>Cowboy</option>
-              <option value="Yamaha" <?= ($data['kategori'] == 'Yamaha') ? 'selected' : '' ?>>Yamaha</option>
-              <option value="Karafuru" <?= ($data['kategori'] == 'Karafuru') ? 'selected' : '' ?>>Karafuru</option>
-              <option value="Bromo" <?= ($data['kategori'] == 'Bromo') ? 'selected' : '' ?>>Bromo</option>
-              <option value="Odlair" <?= ($data['kategori'] == 'Odlair') ? 'selected' : '' ?>>Odlair</option>
-              <option value="Aksesoris" <?= ($data['kategori'] == 'Aksesoris') ? 'selected' : '' ?>>Aksesoris</option>
-            </select>
-          </div>
-
-          <div class="row-group">
             <div class="form-group">
               <label>Harga (Rp)</label>
               <input type="number" name="harga" class="form-control" value="<?= $data['harga']; ?>" required>
