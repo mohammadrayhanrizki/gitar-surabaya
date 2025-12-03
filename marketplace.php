@@ -106,7 +106,7 @@ include 'koneksi.php';
                             <?php if ($row['stok'] > 0): ?>
                                 <p class="product-status available">Tersedia</p><?php else: ?>
                                 <p class="product-status preorder" style="background:#ffebee; color:red;">Habis</p><?php endif; ?>
-                            <button class="btn-belanja mobile" style="display:block; width:100%; margin-top:10px; margin-left:0; padding:8px; font-size:12px; border:1px solid #000;" onclick="event.stopPropagation(); addToCart('<?= $row['nama_produk']; ?>', <?= $row['harga']; ?>)">+
+                            <button class="btn-belanja mobile" style="display:block; width:100%; margin-top:10px; margin-left:0; padding:8px; font-size:12px; border:1px solid #000;" onclick="event.stopPropagation(); addToCart('<?= htmlspecialchars($row['nama_produk'], ENT_QUOTES); ?>', <?= $row['harga']; ?>)">+
                                 Keranjang</button>
                         </div>
                 <?php }
@@ -160,7 +160,7 @@ include 'koneksi.php';
                                             <p class="product-status available">Tersedia</p><?php else: ?>
                                             <p class="product-status preorder" style="background:#ffebee; color:red;">Habis</p>
                                         <?php endif; ?>
-                                        <button class="btn-belanja mobile" style="display:block; width:100%; margin-top:10px; margin-left:0; padding:8px; font-size:12px; border:1px solid #000;" onclick="event.stopPropagation(); addToCart('<?= $row['nama_produk']; ?>', <?= $row['harga']; ?>)">+
+                                        <button class="btn-belanja mobile" style="display:block; width:100%; margin-top:10px; margin-left:0; padding:8px; font-size:12px; border:1px solid #000;" onclick="event.stopPropagation(); addToCart('<?= htmlspecialchars($row['nama_produk'], ENT_QUOTES); ?>', <?= $row['harga']; ?>)">+
                                             Keranjang</button>
                                     </div>
                             <?php }

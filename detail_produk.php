@@ -300,7 +300,7 @@ if (!$produk) {
       </div>
 
       <div class="action-buttons">
-        <button class="btn-cart-big" onclick="addToCart('<?= $produk['nama_produk']; ?>', <?= $produk['harga']; ?>)">
+        <button class="btn-cart-big" onclick="addToCart('<?= htmlspecialchars($produk['nama_produk'], ENT_QUOTES); ?>', <?= $produk['harga']; ?>)">
           <i class="fas fa-cart-plus"></i> Masukkan Keranjang
         </button>
 

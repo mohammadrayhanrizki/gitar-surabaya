@@ -23,7 +23,7 @@ if (isset($_POST['login'])) {
     if (password_verify($pass, $d->PASSWORD)) {
         $_SESSION['status_login'] = true;
         $_SESSION['a_global'] = $d;
-        $_SESSION['id'] = $d->admin_id;
+        $_SESSION['id'] = $d->id;
         
         echo '<script>window.location="dashboard.php"</script>';
     } else {
@@ -41,6 +41,7 @@ if (isset($_POST['login'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Admin - Gitar Surabaya</title>
+  <link rel="icon" type="image/png" href="./images/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>

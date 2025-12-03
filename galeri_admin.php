@@ -237,6 +237,7 @@ if (isset($_GET['hapus'])) {
       transition: 0.2s;
     }
 
+    .btn-delete:hover {
       background: #E53935;
       color: #fff;
       transform: scale(1.1);
