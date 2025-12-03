@@ -57,7 +57,7 @@
         <!-- Gambar hero -->
         <div class="hero-bg" data-animate="fade-in" data-delay="300">
             <img src="./images/foto.png" alt="foto-gitar" class="guitar-img">
-            <img src="./images/shadowbawahgitar.png" alt="bayangan-gitar" class="guitar-shadow">
+            <img src="./images/shadowfix2.png" alt="bayangan-gitar" class="guitar-shadow">
             <img src="./images/shadowbg.png" alt="shadow-bg" class="shadow-bg">
         </div>
     </section>
