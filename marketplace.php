@@ -122,13 +122,11 @@ include 'koneksi.php';
 
     <?php
     $brands = [
+        ['name' => 'Cowboy', 'logo' => 'Logo-Cowboy-fix.png'],
         ['name' => 'Yamaha', 'logo' => 'yamaha.png'],
-        ['name' => 'Fender', 'logo' => 'logo_fender.png'],
+        ['name' => 'Karafuru', 'logo' => 'karafuru-logo2.png'],
         ['name' => 'Bromo', 'logo' => 'bromo.png'],
-        ['name' => 'Cort', 'logo' => 'logo_cort.png'],
-        ['name' => 'Taylor', 'logo' => 'logo_taylor.png'],
-        ['name' => 'Ibanez', 'logo' => 'logo_ibanez.png'],
-        ['name' => 'Aksesoris', 'logo' => 'logo_aksesoris.png', 'query' => "kategori = 'Aksesoris' OR kategori = 'Lainnya'"]
+        ['name' => 'Odlair', 'logo' => 'logo-odlair.png']
     ];
 
     foreach ($brands as $brand) {

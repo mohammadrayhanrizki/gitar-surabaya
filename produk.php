@@ -174,13 +174,11 @@ if (isset($_GET['hapus'])) {
             <label>Kategori / Merk</label>
             <select name="kategori" class="form-control" required>
               <option value="">-- Pilih Merk --</option>
-              <option value="Yamaha">Yamaha</option>
-              <option value="Fender">Fender</option>
+              <option value="Cowboy">Cowboy</option>
+              <option value="Yamaha">Yamaha</option>  
+              <option value="Karafuru">Karafuru</option>
               <option value="Bromo">Bromo</option>
-              <option value="Cort">Cort</option>
-              <option value="Taylor">Taylor</option>
-              <option value="Ibanez">Ibanez</option>
-              <option value="Aksesoris">Aksesoris</option>
+              <option value="Odlair">Odlair</option>
             </select>
           </div>
 

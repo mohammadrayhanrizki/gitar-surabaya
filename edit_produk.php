@@ -132,14 +132,12 @@ if (isset($_POST['update'])) {
             <label>Kategori / Merk</label>
             <select name="kategori" class="form-control" required>
               <option value="">-- Pilih Merk --</option>
+              <option value="Cowboy" <?= ($data['kategori'] == 'Cowboy') ? 'selected' : '' ?>>Cowboy</option>
               <option value="Yamaha" <?= ($data['kategori'] == 'Yamaha') ? 'selected' : '' ?>>Yamaha</option>
-              <option value="Fender" <?= ($data['kategori'] == 'Fender') ? 'selected' : '' ?>>Fender</option>
+              <option value="Karafuru" <?= ($data['kategori'] == 'Karafuru') ? 'selected' : '' ?>>Karafuru</option>
               <option value="Bromo" <?= ($data['kategori'] == 'Bromo') ? 'selected' : '' ?>>Bromo</option>
-              <option value="Cort" <?= ($data['kategori'] == 'Cort') ? 'selected' : '' ?>>Cort</option>
-              <option value="Taylor" <?= ($data['kategori'] == 'Taylor') ? 'selected' : '' ?>>Taylor</option>
-              <option value="Ibanez" <?= ($data['kategori'] == 'Ibanez') ? 'selected' : '' ?>>Ibanez</option>
+              <option value="Odlair" <?= ($data['kategori'] == 'Odlair') ? 'selected' : '' ?>>Odlair</option>
               <option value="Aksesoris" <?= ($data['kategori'] == 'Aksesoris') ? 'selected' : '' ?>>Aksesoris</option>
-              <option value="Lainnya" <?= ($data['kategori'] == 'Lainnya') ? 'selected' : '' ?>>Lainnya</option>
             </select>
           </div>
 
